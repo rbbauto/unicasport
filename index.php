@@ -26,10 +26,10 @@
                 <i class="fas fa-futbol fa-lg"></i><a class="navbar-brand js-scroll-trigger" href="#page-top">&nbspUnica Sport</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Empresa</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Servicios</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Nosotros">Empresa</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Servicios">Servicios</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Galeria</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contacto</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Contacto">Contacto</a></li>
                     </ul>
                 </div>
             </div>
@@ -44,14 +44,14 @@
                     </div>
                     <div class="col-lg-8 align-self-baseline">
                         <p class="text-danger-75 font-weight-bolder mb-5">Fabricamos Todo tipo de Pelotas: Comerciales, Profesionales, Publicitarias y Vendemos Articulos Deportivos!</p>
-                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Mas Informacion</a>
+                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#Nosotros">Mas Informacion</a>
                     </div>
 
                 </div>
             </div>
         </header>
         <!-- About-->
-        <section class="page-section bg-info" id="about">
+        <section class="page-section bg-info" id="Nosotros">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8 text-center">
@@ -62,13 +62,13 @@
                         <h3 class="text-dark mt-0">Fabricamos y Comercializamos</h3>
                         <p class="text-dark-50 mb-4">Pelotas de: Futbol,Voley,Handball,Papi(1/2 pique), Basquet, Rugby, Tenis.!</p>
                         <p class="text-dark-50 mb-4">Articulos Deportivos:Vestimenta, Rodilleras, Colchonetas, Bolsas, Guantes, Pesas y mucho mas!</p>
-                        <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Ver Mas!</a>
+                        <a class="btn btn-light btn-xl js-scroll-trigger" href="#Servicios">Ver Mas!</a>
                     </div>
                 </div>
             </div>
         </section>
         <!-- Services-->
-        <section class="page-section" id="services">
+        <section class="page-section" id="Servicios">
             <div class="container">
                 <h2 class="text-center mt-0">Nuestros Servicios</h2>
                 <hr class="divider my-4" />
@@ -168,11 +168,11 @@
         <section class="page-section bg-dark text-white">
             <div class="container text-center">
                 <h2 class="mb-4">Consulte a nuestros representantes!</h2>
-                <a class="btn btn-light btn-xl js-scroll-trigger" href="#contact">Contactenos</a>
+                <a class="btn btn-light btn-xl js-scroll-trigger" href="#Contacto">Contactenos</a>
             </div>
         </section>
         <!-- Contact-->
-        <section class="page-section" id="contact">
+        <section class="page-section" id="Contacto">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8 text-center">
@@ -184,11 +184,21 @@
                     <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
                         <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
                         <div>+54 9 (0237) 468-2107</div>
+                        <hr class="divider my-4" />  
+                        <div>
+                             <ul class="social-network social-circle">
+                        
+                        <li><a href="https://www.facebook.com/Unica-Sport-443298942525772/" class="icoFacebook" title="Facebook"><i class="fab fa-facebook fa-3x"></i></a></li>
+                        <li><a href="https://plus.google.com/113862832649718260177?rel=author" class="icoGoogle" title="Google +"><i class="fab fa-google-plus fa-3x"></i></a></li>
+                        <li><a href="tel:0237 4682107" class="icoPhone" title="llamar"><i class="fas fa-phone-square fa-3x"></i></a></li>
+                        
+                    </ul> 
+                        </div>
                     </div>
                     <div class="col-lg-4 mr-auto text-center">
                        <iframe class="col-lg-12 col-md-12 col-sm-12" style="border: 0;"
 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13132.701451211378!2d-58.7892875!3d-34.6250085!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x5bf6ef4e060b472d!2sPelotas+Unica+Sport!5e0!3m2!1ses!2sar!4v1503925960380" width="300" height="350" frameborder="0" allowfullscreen="allowfullscreen">
-</iframe
+</iframe>
                     </div>
                 </div>
             </div>
@@ -197,13 +207,7 @@ src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13132.701451211378!2d-
         <footer class="bg-light py-5">
             <div class="container">
                 <div class="col-md-12 text-center">
-                    <ul class="social-network social-circle">
-                        
-                        <li><a href="https://www.facebook.com/Unica-Sport-443298942525772/" class="icoFacebook" title="Facebook"><i class="fab fa-facebook fa-3x"></i></a></li>
-                        <li><a href="https://plus.google.com/113862832649718260177?rel=author" class="icoGoogle" title="Google +"><i class="fab fa-google-plus fa-3x"></i></a></li>
-                        <li><a href="tel:0237 4682107" class="icoPhone" title="llamar"><i class="fas fa-phone-square fa-3x"></i></a></li>
-                        
-                    </ul>       
+                         
                                 
                 </div>
         
