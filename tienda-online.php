@@ -20,13 +20,11 @@
         <link href="css/styles.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
-    <body ng-app="app">
-
-        <div class="se-pre-con"></div>
+    <body ng-app="app" class="bg-dark">
 
         <!-- Navigation-->
         
-            <nav class="navbar navbar-expand-lg navbar-light bg-dark" id="mainNav">
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 bg-dark" id="mainNav">
             <div class="container">
                 <i class="fas fa-futbol fa-lg"></i><a class="navbar-brand js-scroll-trigger" href="http://<?php echo $_SERVER['SERVER_NAME'] . "/" . basename(__DIR__); ?>/">&nbspUnica Sport</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -36,24 +34,46 @@
                         <li class="nav-item"><a class="nav-link" href="http://<?php echo $_SERVER['SERVER_NAME'] . "/" . basename(__DIR__); ?>/#portfolio">Galeria</a></li>
                         <li class="nav-item"><a class="nav-link" href="http://<?php echo $_SERVER['SERVER_NAME'] . "/" . basename(__DIR__); ?>/tienda-online.php">Tienda Online</a></li>
                         <li class="nav-item"><a class="nav-link" href="http://<?php echo $_SERVER['SERVER_NAME'] . "/" . basename(__DIR__); ?>/#Contacto">Contacto</a></li>
+                        
                     </ul>
                 </div>
             </div>
         </nav>
 
         <!-- /Navigation-->
-        <header class="text-center">
-            <br>
-            <h1><i class="fas fa-shopping-cart"></i> Tienda en Linea: Productos</h1>
+        <div class="se-pre-con"></div>
+        <header class="headerCustom">
+            
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="float-right">
+                        <input type="text" class="form-control" ng-model="buscarProductos" placeholder="Ingrese su Busqueda" />
+                    </div>
+                </div>
+                 <div class="col-md-4 text-center"> 
+                        <h1 class="text-muted"><i class="fas fa-shopping-cart"></i> Tienda en Linea</h1>
+                </div>
+                <div class="col-md-3 bg-light rounded"> 
+                    <span class="float-left">
+                        <h3><i class="fas fa-shopping-cart"></i>Carrito</h3>
+                        {{ 0 |currency:'$'}} ARS&nbsp;&nbsp;{{0}}-Items
+                    </span>
+
+                </div>
+            </div>
+            
+
+
         </header>
         <!-- Productos-->
-        <section ng-controller="productos"  class="page-section">
+        <section ng-controller="productos"  class="page-section  bg-light">
 
             <div class="container">
                 
                 <div class="row">
                   
-                    <div ng-repeat="producto in productos" class="col-sm-4" id="{{$index}}">
+                    <div ng-repeat="producto in productos |filter:buscarProductos" class="col-sm-4" id="{{$index}}">
                         <div class="card">
                             <img class="card-img-top imgProducto" src="administracion/{{producto.imagen}}" alt="Card image cap">  
                             <div class="card-body">

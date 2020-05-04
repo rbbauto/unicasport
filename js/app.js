@@ -6,6 +6,12 @@ app.controller('productos', ['$scope','$http', function($scope,$http){
 
 	$scope.producto = {};
 
+	$scope.items=0;
+
+	$scope.carrito={};
+
+	$scope.carrito.total=0;
+
 	//list
 	$scope.listProducts = function(){
 
