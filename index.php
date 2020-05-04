@@ -29,6 +29,7 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Nosotros">Empresa</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Servicios">Servicios</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Galeria</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="tienda-online.php">Tienda Online</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Contacto">Contacto</a></li>
                     </ul>
                 </div>
