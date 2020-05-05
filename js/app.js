@@ -12,6 +12,8 @@ app.controller('productos', ['$scope','$http', function($scope,$http){
 
 	$scope.carrito.total=0;
 
+	$scope.carrito.items=0;
+
 	//list
 	$scope.listProducts = function(){
 

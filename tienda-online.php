@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  ng-app="app">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -20,7 +20,7 @@
         <link href="css/styles.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
-    <body ng-app="app" class="bg-dark">
+    <body class="bg-dark" ng-controller="productos">
 
         <!-- Navigation-->
         
@@ -54,10 +54,15 @@
                  <div class="col-md-4 text-center"> 
                         <h1 class="text-muted"><i class="fas fa-shopping-cart"></i> Tienda en Linea</h1>
                 </div>
-                <div class="col-md-3 bg-light rounded"> 
-                    <span class="float-left">
-                        <h3><i class="fas fa-shopping-cart"></i>Carrito</h3>
-                        {{ 0 |currency:'$'}} ARS&nbsp;&nbsp;{{0}}-Items
+                <div class="col-md-3 bg-light rounded text-center"> 
+                    <span>
+                        <h3>
+                        <i class="fas fa-shopping-cart"></i>Carrito
+                        <small>
+                            <a  class="btn btn-primary" data-toggle="modal" data-target="#modal_carrito">Mostrar</a>
+                        </small></h3>
+                        {{ carrito.total |currency:'$'}} <small>ARS |</small>&nbsp;{{carrito.items}}<small> items</small>
+
                     </span>
 
                 </div>
@@ -67,7 +72,7 @@
 
         </header>
         <!-- Productos-->
-        <section ng-controller="productos"  class="page-section  bg-light">
+        <section  class="page-section  bg-light">
 
             <div class="container">
                 
@@ -78,13 +83,14 @@
                             <img class="card-img-top imgProducto" src="administracion/{{producto.imagen}}" alt="Card image cap">  
                             <div class="card-body">
                                 <h5 class="card-title">{{producto.nombre}}</h5>
+                                <h5>Categoria: {{producto.categoria}}</h5>
                                 <div class="excerpt">
                                     <p class="card-text">{{producto.descripcion}}</p>    
                                 </div>
                                 <hr class="divider" />
                     
                                 <a href="#" class="btn btn-primary">Agregar al Carrito</a>
-                                <a href="#" class="btn btn-success">Comprar {{$index}}</a>
+                                <a href="#" class="btn btn-success">Comprar</a>
                             </div>
                         </div>
                     </div>
@@ -97,9 +103,11 @@
         <!-- Productos-->
 
 
-        <!-- Modal Detalle-->
-
-        <!-- /Modal Detalle-->
+        <!-- Modal Carrito-->
+            <?php 
+                require_once"core/view/modalCarrito.php";
+             ?>
+        <!-- /Modal Carrito-->
         
         <footer class="bg-light py-5">
             <div class="container">
