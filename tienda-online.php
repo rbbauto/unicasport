@@ -59,9 +59,9 @@
                         <h3>
                         <i class="fas fa-shopping-cart"></i>Carrito
                         <small>
-                            <a  class="btn btn-primary" data-toggle="modal" data-target="#modal_carrito">Mostrar</a>
+                            <a  class="btn btn-primary" ng-click="vaciarCarro()">Vaciar</a>
                         </small></h3>
-                        {{ carrito.total |currency:'$'}} <small>ARS |</small>&nbsp;{{carrito.items}}<small> items</small>
+                        {{ carrito.total |currency:'$'}} <small>ARS |</small>&nbsp;<strong id="spanItems"></strong><small>{{storage()}} items</small>
 
                     </span>
 
@@ -89,8 +89,8 @@
                                 </div>
                                 <hr class="divider" />
                     
-                                <a href="#" class="btn btn-primary">Agregar al Carrito</a>
-                                <a href="#" class="btn btn-success">Comprar</a>
+                                <button ng-click="agregaAlCarrito($index)" class="btn btn-primary" data-toggle="modal" data-target="#modal_carrito">Agregar al Carrito</button>
+                                <button ng-click="" class="btn btn-success">Comprar</button>
                             </div>
                         </div>
                     </div>
