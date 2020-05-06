@@ -4,6 +4,7 @@
            <th>Id</th>
             <th>Imagen</th>
             <th>Nombre</th>
+            <th>Precio</th>
             <th>Descripción</th>
             <th>Color</th>
             <th>Categoria</th>
@@ -17,6 +18,7 @@
         <td>{{$index + 1}}</td>
         <td><img src="{{producto.imagen}}" width="120px"</td>
         <td>{{producto.nombre}}</td>
+        <td>{{producto.precio |currency:'$'}}</td>
         <td>{{producto.descripcion}}</td>
         <td>{{producto.color}}</td>
         <td>{{producto.categoria}}</td>

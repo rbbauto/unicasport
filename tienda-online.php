@@ -61,7 +61,7 @@
                         <small>
                             <a  class="btn btn-primary" ng-click="vaciarCarro()">Vaciar</a>
                         </small></h3>
-                        {{ carrito.total |currency:'$'}} <small>ARS |</small>&nbsp;<strong id="spanItems"></strong><small>{{storage()}} items</small>
+                        {{ carrito.total |currency:'$'}} <small>ARS |</small>&nbsp;{{carrito.items}}<small> items</small>
 
                     </span>
 
@@ -82,7 +82,8 @@
                         <div class="card">
                             <img class="card-img-top imgProducto" src="administracion/{{producto.imagen}}" alt="Card image cap">  
                             <div class="card-body">
-                                <h5 class="card-title">{{producto.nombre}}</h5>
+                                <h4 class="card-title">{{producto.nombre}}</h4>
+                                <h3>${{producto.precio}} ARS</h3>
                                 <h5>Categoria: {{producto.categoria}}</h5>
                                 <div class="excerpt">
                                     <p class="card-text">{{producto.descripcion}}</p>    
@@ -126,7 +127,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <!-- Core Framework-->
         <script src="administracion/lib/angular.min.js"></script>
+        <!-- Core App -->
         <script src="js/app.js"></script>
     </body>
 </html>

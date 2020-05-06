@@ -14,14 +14,11 @@ app.controller('productos', ['$scope','$http', function($scope,$http){
 
 	$scope.producto = {};
 
-	$scope.items=0;
-
 	$scope.carrito=[];
-
 
 	$scope.item =[];
 
-	$scope.carrito.total=0;
+	$scope.carrito.total=0.00;
 
 	$scope.carrito.items=0;
 
@@ -40,23 +37,29 @@ app.controller('productos', ['$scope','$http', function($scope,$http){
 	//agrega producto al carrito
 
 	$scope.agregaAlCarrito	=	function(index){
+
 		$scope.carrito.item=$scope.productos[index];
 		$scope.carrito.push($scope.productos[index]);
-		localStorage.setItem("Items",JSON.stringify($scope.carrito))
-		$("#spanItems").html($scope.storage().length);
+		localStorage.setItem("Items",JSON.stringify($scope.carrito));
+		$scope.carrito.total = parseFloat($scope.carrito.item.precio) + parseFloat($scope.carrito.total); // no funciona
+		localStorage.setItem("Total",JSON.stringify($scope.carrito.total));
+		$scope.carrito.items = $scope.storage().length;
+		
 	}
 
 	// vacia el carrito
 	$scope.vaciarCarro = function(){
 		localStorage.clear();
-		$("#spanItems").html($scope.storage().length);
+		$scope.carrito.items = $scope.storage().length;
+		$scope.carrito.total=JSON.parse(localStorage.getItem("Total")) != null ? JSON.parse(localStorage.getItem("Total")) : "";
 	}
 	
 	
 	$(".se-pre-con").hide()
 
 	$scope.listProducts();
-	$("#spanItems").html($scope.storage().length);
+	$scope.carrito.items = $scope.storage().length;
+	$scope.carrito.total=JSON.parse(localStorage.getItem("Total")) != null ? JSON.parse(localStorage.getItem("Total")) : "";
 
 	
 }])

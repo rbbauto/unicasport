@@ -14,6 +14,7 @@ if (isset($data['producto'])) {
     $categoria = (isset($data['producto']['categoria']) ? $data['producto']['categoria'] : NULL);
     $stock = (isset($data['producto']['stock']) ? $data['producto']['stock'] : NULL);
     $activa = (isset($data['producto']['activa']) ? $data['producto']['activa'] : NULL);
+    $precio = (isset($data['producto']['precio']) ? $data['producto']['precio'] : NULL);
     
 
     // validar
@@ -26,7 +27,7 @@ if (isset($data['producto'])) {
         // Update
         $crud = new Crud();
 
-        $crud->Update($name, $description, $product_id,$imagen,$color,$categoria,$stock,$activa);
+        $crud->Update($name, $description, $product_id,$imagen,$color,$categoria,$stock,$activa,$precio);
     }
 }
 

@@ -17,25 +17,25 @@
                     <div class="form-row">
                         <div class="col">
                             <label for="name">Nombre</label>
-                            <input ng-model="detalle_producto.nombre" type="text" id="name" class="form-control"/>
+                            <input id="name" ng-model="detalle_producto.nombre" type="text" id="name" class="form-control"/>
                         </div>
                         <div class="col">
                             <label for="description">Descripción</label>
-                            <textarea ng-model="detalle_producto.descripcion" class="form-control" name="description"></textarea>
+                            <textarea id="descripcion" ng-model="detalle_producto.descripcion" class="form-control" name="description"></textarea>
                         </div>
                     </div>
                     <hr/>
                     <div class="form-row">
                         <div class="col">
                             <label for="color">Color</label>
-                            <select ng-model="detalle_producto.color" class="form-control">
+                            <select id="color" ng-model="detalle_producto.color" class="form-control">
                                 <option ng-repeat="color in colores">{{color}}</option>
                             </select>
                         </div>
 
                         <div class="col">
                             <label for="categoria">Categoria</label>
-                            <select ng-model="detalle_producto.categoria" class="form-control">
+                            <select id="categoria" ng-model="detalle_producto.categoria" class="form-control">
                                 <option ng-repeat="categoria in categorias">{{categoria}}</option>
                             </select>
                         </div>
@@ -44,18 +44,23 @@
                     <div class="form-row">
                         <div class="col">
                             <label for="stock">Cantidad</label>
-                            <input class="form-control" type="number" ng-model="detalle_producto.stock">
+                            <input id="stock" class="form-control" type="number" ng-model="detalle_producto.stock">
                         </div>
-
+                        <div class="col">
+                            <label for="precio">Precio</label>
+                            <input id="precio" class="form-control" type="number" ng-model="detalle_producto.precio">
+                        </div>
                         <div class="col">
                             <label for="stock">Activa</label>
-                            <select class="form-control" ng-model="detalle_producto.activa">
+                            <select id="stock" class="form-control" ng-model="detalle_producto.activa">
                                 <option value="1" ng-selected="detalle_producto.activa">Si</option>
                                 <option value="0">No</option>
                             </select>
                         </div>
                         
+                        
                     </div>
+                    
                     <hr/>
                     <div class="card col">
                         <img class="card-img-top img-card-custom" src="{{ detalle_producto.imagen }}">

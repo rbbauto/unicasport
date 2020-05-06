@@ -51,6 +51,11 @@
                             
                         </div>
                         <div class="col">
+                            <label for="precio">Precio <i class="alert-danger">obligatorio!</i></label>
+                            <input class="form-control" type="number" ng-model="producto.precio">
+
+                        </div>
+                        <div class="col">
                            <label for="stock">Activa <i class="alert-danger">obligatorio!</i></label>
                                 <select ng-model="producto.activa" class="form-control">
                                     <option value="1">Si</option>

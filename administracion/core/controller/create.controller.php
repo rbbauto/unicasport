@@ -13,6 +13,7 @@ if (isset($data['producto'])) {
     $categoria = (isset($data['producto']['categoria']) ? $data['producto']['categoria'] : NULL);
     $stock = (isset($data['producto']['stock']) ? $data['producto']['stock'] : NULL);
     $activa = (isset($data['producto']['activa']) ? $data['producto']['activa'] : NULL);
+    $precio = (isset($data['producto']['precio']) ? $data['producto']['precio'] : NULL);
 
     // validación
     if ($name == NULL) {
@@ -24,7 +25,7 @@ if (isset($data['producto'])) {
         // Add new product
         $crud = new Crud();
 
-        echo $crud->Create($name, $description,$imagen,$color,$categoria,$stock,$activa);
+        echo $crud->Create($name, $description,$imagen,$color,$categoria,$stock,$activa,$precio);
     }
 }
 

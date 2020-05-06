@@ -20,7 +20,7 @@ section{
 	overflow: auto;
 }
 .imgProducto{
-	width: auto;
+	/*width: auto;*/
  	 max-height: 230px;
 }
 .col-sm-4{
