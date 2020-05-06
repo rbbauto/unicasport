@@ -10,6 +10,8 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 		return JSON.parse(localStorage.getItem("Items")) != null ? JSON.parse(localStorage.getItem("Items")) : "";
 	};
 
+	$scope.multiplica=1;
+
 	$scope.carrito=[];
 
 	$scope.total=JSON.parse(localStorage.getItem("Total"));

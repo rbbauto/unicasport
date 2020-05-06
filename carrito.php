@@ -84,15 +84,20 @@
                             <li ng-repeat="producto in carrito track by $index">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <img src="administracion/{{producto.imagen}}" class="img-fluid rounded">
+                                        <img src="administracion/{{producto.imagen}}" class="imgProduct rounded">
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-4">
                                         <p>{{producto.nombre}}</p>
                                         <h4><span>{{producto.precio |currency:'$'}}</span></h4>
                                     </div>
-                                    <div class="col-md-3">
-                                        <label for="cantidad">Cantidad</label>
-                                        <input class="form-control col-xs-2" type="number" id="cantidad" value="1">
+                                    <div class="col-md-2">
+                                        <label for="cantidad" class="text-muted">Cantidad</label>
+                                        <input ng-model="multiplica" min="1" max="{{producto.stock}}" class="form-control col-xs-2" type="number" id="cantidad">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="text-muted">Sub-Total</label>
+                                        <span>{{producto.precio * multiplica |currency:'$'}} ARS</span>
+                                        
                                     </div>
                                 </div>
                                 <hr/>
