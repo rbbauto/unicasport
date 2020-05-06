@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  ng-app="app">
+<html lang="en"  ng-app="appShop">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -20,7 +20,7 @@
         <link href="css/styles.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
-    <body class="bg-dark" ng-controller="productos">
+    <body class="bg-dark" ng-controller="carrito">
 
         <!-- Navigation-->
         
@@ -48,7 +48,7 @@
 
                 <div class="col-md-4">
                     <div class="float-right">
-                        <input type="text" class="form-control" ng-model="buscarProductos" placeholder="Ingrese su Busqueda" />
+                        
                     </div>
                 </div>
                  <div class="col-md-4 text-center"> 
@@ -60,10 +60,9 @@
                             <i class="fas fa-shopping-cart fa-2x"></i><strong class="text-muted" ng-if="storage().length ==  0">Carrito Vacio!</strong>
                             <small>
                                 <a ng-if="storage().length > 0" class="btn btn-primary" ng-click="vaciarCarro()">Vaciar</a>
-                                <a ng-if="storage().length > 0" href="carrito.php" class="btn btn-success">Finalizar Compra</a>
                             </small>
                         </div>
-                        <span>{{ carrito.total |currency:'$'}}</span> <small>ARS |</small>&nbsp;{{carrito.items}}<small> items</small>
+                        <span>{{ total |currency:'$'}}</span><small> ARS | </small>&nbsp;{{items}}<small> items</small>
 
                     </span>
 
@@ -73,44 +72,58 @@
 
 
         </header>
-        <!-- Productos-->
+        <!-- Carrito-->
         <section  class="page-section  bg-light">
 
-            <div class="container">
+            <div class="container-fluid">
                 
                 <div class="row">
-                  
-                    <div ng-repeat="producto in productos |filter:buscarProductos" class="col-sm-4" id="{{$index}}">
-                        <div class="card">
-                            <img class="card-img-top imgProducto" src="administracion/{{producto.imagen}}" alt="Card image cap">  
-                            <div class="card-body">
-                                <h4 class="card-title">{{producto.nombre}}</h4>
-                                <h3> <span>{{producto.precio |currency:'$'}} </span> ARS</h3>
-                                <h5>Categoria: {{producto.categoria}}</h5>
-                                <div class="excerpt">
-                                    <p class="card-text">{{producto.descripcion}}</p>    
+                    <div class="col-md-8">
+                        <h3>Carrito</h3><hr>
+                        <ul class="list-unstyled">
+                            <li ng-repeat="producto in carrito track by $index">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img src="administracion/{{producto.imagen}}" class="img-fluid rounded">
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p>{{producto.nombre}}</p>
+                                        <h4><span>{{producto.precio |currency:'$'}}</span></h4>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="cantidad">Cantidad</label>
+                                        <input class="form-control col-xs-2" type="number" id="cantidad" value="1">
+                                    </div>
                                 </div>
-                                <hr class="divider" />
-                    
-                                <button ng-click="agregaAlCarrito($index)" class="btn btn-primary" data-toggle="modal" data-target="#modal_carrito">Agregar al Carrito</button>
-                                
-                            </div>
-                        </div>
-                    </div>
+                                <hr/>
+                            </li>
+                            
+                        </ul>
                 
-            </div>
+                    </div><!-- /div:col-md-8-->
+                    <div class="col-md-4 border">
+                        <div class="col-md-12">
+                            <h5 class="text-muted text-center">Resumen de Compra</h5>
+                        </div>
+                        <div class="float-left">
+                            <p>{{items}} articulos por un total de </p>
+                        </div>
+                        <div class="float-right">
+                            <span class="text-muted">{{total|currency:'$'}} ARS</span>
+                        </div>
+                        <div class="col-md-12" style="clear:both;">
+                            <hr>
+                            <div class="float-left">Total (impuestos inc.)</div><div class="float-right">{{total |currency:'$'}} ARS</div>
+                        </div>
 
+                    </div><!-- /div:col-md-4-->
 
-            </div>
+                </div>
         </section>
-        <!-- Productos-->
+        <!-- /carrito-->
 
 
-        <!-- Modal Carrito-->
-            <?php 
-                require_once"core/view/modalCarrito.php";
-             ?>
-        <!-- /Modal Carrito-->
+        
         
         <footer class="bg-light py-5">
             <div class="container">
@@ -132,6 +145,6 @@
         <!-- Core Framework-->
         <script src="administracion/lib/angular.min.js"></script>
         <!-- Core App -->
-        <script src="js/app.js"></script>
+        <script src="js/appShop.js"></script>
     </body>
 </html>

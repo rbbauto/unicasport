@@ -15,7 +15,7 @@
 
                          <div class="col-md-4">
                             <h1>{{carrito.item.nombre}}</h1>
-                            <h2>${{carrito.item.precio }} ARS</h2>
+                            <h2><span>{{carrito.item.precio |currency:'$' }} ARS</span></h2>
                              <p>{{carrito.item.descripcion}}</p>
                          </div>
 
@@ -30,7 +30,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-dismiss="modal">Seguir Comprando</button>
-                    <button type="button" class="btn btn-primary" ng-click="">Finalizar Compra</button>
+                    <a href="carrito.php" class="btn btn-primary">Finalizar Compra</a>
                 </div>
             </div>
         </div>

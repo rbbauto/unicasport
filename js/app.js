@@ -22,6 +22,7 @@ app.controller('productos', ['$scope','$http', function($scope,$http){
 
 	$scope.carrito.items=0;
 
+
 	//listado de productos
 	$scope.listProducts = function(){
 
@@ -37,29 +38,44 @@ app.controller('productos', ['$scope','$http', function($scope,$http){
 	//agrega producto al carrito
 
 	$scope.agregaAlCarrito	=	function(index){
+		var checkDuplicate=Object.keys($scope.storage());
 
 		$scope.carrito.item=$scope.productos[index];
-		$scope.carrito.push($scope.productos[index]);
+		$scope.carrito[index]= $scope.productos[index];
 		localStorage.setItem("Items",JSON.stringify($scope.carrito));
-		$scope.carrito.total = parseFloat($scope.carrito.item.precio) + parseFloat($scope.carrito.total); // no funciona
-		localStorage.setItem("Total",JSON.stringify($scope.carrito.total));
+
+		if((checkDuplicate.includes(index.toString()))){
+			alert("El Producto ya fue incluido en el carrito de compras");
+			setTimeout(function(){$("#modal_carrito").modal('hide');},100);
+		}else{
+			$scope.carrito.total = sumaFloat($scope.carrito.item.precio,JSON.parse(localStorage.getItem("Total")));
+			localStorage.setItem("Total",JSON.stringify($scope.carrito.total));
+		}
+
 		$scope.carrito.items = $scope.storage().length;
 		
-	}
+	}; // /agregaAlCarrito
 
 	// vacia el carrito
 	$scope.vaciarCarro = function(){
 		localStorage.clear();
+		$scope.carrito=[];
 		$scope.carrito.items = $scope.storage().length;
 		$scope.carrito.total=JSON.parse(localStorage.getItem("Total")) != null ? JSON.parse(localStorage.getItem("Total")) : "";
 	}
 	
 	
-	$(".se-pre-con").hide()
+	$(".se-pre-con").hide();
 
 	$scope.listProducts();
 	$scope.carrito.items = $scope.storage().length;
 	$scope.carrito.total=JSON.parse(localStorage.getItem("Total")) != null ? JSON.parse(localStorage.getItem("Total")) : "";
 
 	
-}])
+}]); // _/controller
+
+var sumaFloat= function(valor1,valor2){
+	var val1=isNaN(valor1) ? parseFloat(valor1) : valor1 ;
+	var val2=isNaN(valor2) ? parseFloat(valor2) : valor2 ;
+	return val1 + val2;
+}
