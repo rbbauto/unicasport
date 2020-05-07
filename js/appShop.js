@@ -60,7 +60,14 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 	$scope.refreshCant=function(){
 		this.producto.subtotal=this.producto.precio*this.multiplica
 		
-	}
+	};
+
+	$scope.enviarPedido=function(){
+		
+		$.post( "prueba.php", JSON.stringify(Debug.carrito) , function( data ) {
+  			$( ".result" ).html( data );
+		});	
+	};
 
 	$(".se-pre-con").hide();	
 

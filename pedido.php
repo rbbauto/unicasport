@@ -59,48 +59,9 @@
                 
                 <div class="row">
                     <div class="col-md-8">
-                        <ul class="list-unstyled">
-                            <li ng-repeat="producto in carrito track by $index">
-                                <div class="row">
-                                    <div class="col-md-1">
-                                        <img src="administracion/{{producto.imagen}}" class="img-fluid imgProduct rounded">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <p>{{producto.nombre}}</p>
-                                        <h4><span>{{producto.precio |currency:'$'}}</span></h4>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="cantidad" class="text-muted">Cantidad</label>
-                                        <input
-                                            ng-change="refreshCant()" 
-                                            ng-model="multiplica" 
-                                            min="1" max="{{producto.stock}}" 
-                                            class="form-control col-xs-2" 
-                                            type="number" 
-                                            id="cantidad"
-                                        />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label class="text-muted">Sub-Total</label>
-                                        <input
-                                            name="subtotal"
-                                            class="form-control col-xs-2"
-                                            ng-model="producto.subtotal" 
-                                            type="text" 
-                                            ng-readonly="true"
-                                        />
-                                    </div>
-                                    <div class="col-md-2">
-                                       <a class="menu_links">
-                                           <i ng-click="delItem($index)" class="fa fa-trash fa-3x" aria-hidden="true"></i>
-                                       </a>
-                                    </div>
-                                </div>
-                                <hr/>
-                            </li>
-                            
-                        </ul>
-                
+                        
+                        <?php require_once"core/view/divPedido.php"; ?>
+
                     </div><!-- /div:col-md-8-->
                     <div class="col-md-4 border">
                         <br/>
@@ -131,11 +92,6 @@
                         <div class="col-md-12" style="clear:both;">
                             <hr>
                             <div class="float-left">Total (impuestos inc.)</div><div class="float-right">{{getCantItems('[name=subtotal]') |currency:'$'}} ARS</div>
-                        </div><!-- /div:col-md-12-->
-                        <br>
-                        <hr/>
-                        <div class="col-md-12 text-center">
-                            <button class="btn btn-primary" ng-click="enviarPedido()">Finalizar Pedido</button>
                         </div><!-- /div:col-md-12-->
 
                     </div><!-- /div:col-md-4-->
