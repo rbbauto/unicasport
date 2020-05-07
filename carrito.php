@@ -62,7 +62,7 @@
                                 <a ng-if="storage().length > 0" class="btn btn-primary" ng-click="vaciarCarro()">Vaciar</a>
                             </small>
                         </div>
-                        <span>{{ total |currency:'$'}}</span><small> ARS | </small>&nbsp;{{items}}<small> items</small>
+                        <span>{{ getCantItems('[name=subtotal]') |currency:'$'}}</span><small> ARS | </small>&nbsp;{{getCantItems('input[type=number]')}}<small> items</small>
 
                     </span>
 
@@ -92,11 +92,24 @@
                                     </div>
                                     <div class="col-md-2">
                                         <label for="cantidad" class="text-muted">Cantidad</label>
-                                        <input ng-model="multiplica" min="1" max="{{producto.stock}}" class="form-control col-xs-2" type="number" id="cantidad">
+                                        <input
+                                            ng-change="refreshCant()" 
+                                            ng-model="multiplica" 
+                                            min="1" max="{{producto.stock}}" 
+                                            class="form-control col-xs-2" 
+                                            type="number" 
+                                            id="cantidad"
+                                        />
                                     </div>
                                     <div class="col-md-2">
                                         <label class="text-muted">Sub-Total</label>
-                                        <span>{{producto.precio * multiplica |currency:'$'}} ARS</span>
+                                        <input
+                                            name="subtotal"
+                                            class="form-control col-xs-2"
+                                            ng-model="producto.subtotal" 
+                                            type="text" 
+                                            ng-readonly="true"
+                                        />
                                     </div>
                                     <div class="col-md-2">
                                        <a class="menu_links">
@@ -115,14 +128,14 @@
                             <h5 class="text-muted text-center">Resumen de Compra</h5>
                         </div>
                         <div class="float-left">
-                            <p>{{items}} articulos por un total de </p>
+                            <p>{{getCantItems('input[type=number]')}} articulos por un total de </p>
                         </div>
                         <div class="float-right">
-                            <span class="text-muted">{{total|currency:'$'}} ARS</span>
+                            <span class="text-muted">{{getCantItems('[name=subtotal]')|currency:'$'}} ARS</span>
                         </div>
                         <div class="col-md-12" style="clear:both;">
                             <hr>
-                            <div class="float-left">Total (impuestos inc.)</div><div class="float-right">{{total |currency:'$'}} ARS</div>
+                            <div class="float-left">Total (impuestos inc.)</div><div class="float-right">{{getCantItems('[name=subtotal]') |currency:'$'}} ARS</div>
                         </div>
 
                     </div><!-- /div:col-md-4-->

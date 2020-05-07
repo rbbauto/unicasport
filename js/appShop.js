@@ -26,6 +26,17 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 
 	$scope.carrito=$scope.storage();
 
+	$scope.getCantItems = function(selector) {
+	    var sum = 0; 
+	    $(selector).each(function() {
+	        sum += Number($(this).val());
+	    });
+	    return sum;
+	};
+
+	
+
+
 	$scope.delItem=function(index){
 		var tempTotal=$scope.getTotal();
 		var result= tempTotal - parseFloat($scope.carrito[index].precio);
@@ -42,6 +53,11 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 		$scope.items = $scope.storage().length;
 		$scope.total=JSON.parse(localStorage.getItem("Total")) != null ? JSON.parse(localStorage.getItem("Total")) : "";
 	};
+
+	$scope.refreshCant=function(){
+		this.producto.subtotal=this.producto.precio*this.multiplica
+		
+	}
 
 	$(".se-pre-con").hide();	
 

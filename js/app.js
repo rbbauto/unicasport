@@ -41,6 +41,7 @@ app.controller('productos', ['$scope','$http', function($scope,$http){
 		var checkDuplicate=Object.keys($scope.storage());
 
 		$scope.carrito.item=$scope.productos[index];
+		$scope.carrito.item.subtotal=$scope.productos[index].precio;
 		$scope.carrito[index]= $scope.productos[index];
 		localStorage.setItem("Items",JSON.stringify($scope.carrito));
 
