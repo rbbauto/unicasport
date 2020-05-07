@@ -7,14 +7,14 @@ app.controller('productos', ['$scope','$http', function($scope,$http){
 	Debug= $scope;
 
 	$scope.storage= function(){
-		return JSON.parse(localStorage.getItem("Items")) != null ? JSON.parse(localStorage.getItem("Items")) : "";
+		return JSON.parse(localStorage.getItem("Items")) != null ? JSON.parse(localStorage.getItem("Items")) : [];
 	}
 
 	$scope.productos = [];
 
 	$scope.producto = {};
 
-	$scope.carrito=[];
+	$scope.carrito=$scope.storage();
 
 	$scope.item =[];
 
@@ -48,6 +48,7 @@ app.controller('productos', ['$scope','$http', function($scope,$http){
 			alert("El Producto ya fue incluido en el carrito de compras");
 			setTimeout(function(){$("#modal_carrito").modal('hide');},100);
 		}else{
+			console.log(index);
 			$scope.carrito.total = sumaFloat($scope.carrito.item.precio,JSON.parse(localStorage.getItem("Total")));
 			localStorage.setItem("Total",JSON.stringify($scope.carrito.total));
 		}
