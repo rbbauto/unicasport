@@ -76,10 +76,8 @@
         <!-- Productos-->
         <section  class="page-section  bg-light">
 
-            <div class="container">
-                
+            <div class="container-fluid">
                 <div class="row">
-                  
                     <div ng-repeat="producto in productos |filter:buscarProductos" class="col-sm-3" id="{{$index}}">
                         <div class="card">
                             <img class="card-img-top imgProducto" src="administracion/{{producto.imagen}}" alt="Card image cap">  
@@ -94,14 +92,11 @@
                     
                                 <button ng-click="agregaAlCarrito($index)" class="btn btn-primary" data-toggle="modal" data-target="#modal_carrito">Agregar al Carrito</button>
                                 
-                            </div>
-                        </div>
-                    </div>
-                
-            </div>
-
-
-            </div>
+                            </div><!-- /div:card-body--> 
+                        </div> <!-- /div:card--> 
+                    </div><!-- /div:col-sm-3 -->
+                </div><!-- /div:row -->
+             </div><!-- /div:container-fluid-->
         </section>
         <!-- Productos-->
 

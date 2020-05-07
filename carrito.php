@@ -43,35 +43,15 @@
         <!-- /Navigation-->
         <div class="se-pre-con"></div>
         <header class="headerCustom">
-            
+        </header>
+
+        <div class="container-fluid">
             <div class="row">
-
-                <div class="col-md-4">
-                    <div class="float-right">
-                        
-                    </div>
-                </div>
-                 <div class="col-md-4 text-center"> 
-                        <h1 class="text-muted"><i class="fas fa-shopping-cart"></i> Tienda en Linea</h1>
-                </div>
-                <div class="col-md-3 bg-light rounded text-center"> 
-                    <span>
-                        <div class="infoHeader">
-                            <i class="fas fa-shopping-cart fa-2x"></i><strong class="text-muted" ng-if="storage().length ==  0">Carrito Vacio!</strong>
-                            <small>
-                                <a ng-if="storage().length > 0" class="btn btn-primary" ng-click="vaciarCarro()">Vaciar</a>
-                            </small>
-                        </div>
-                        <span>{{ getCantItems('[name=subtotal]') |currency:'$'}}</span><small> ARS | </small>&nbsp;{{getCantItems('input[type=number]')}}<small> items</small>
-
-                    </span>
-
+                <div class="col-md-12 text-center"> 
+                        <h1 class="text-muted"><i class="fas fa-shopping-cart"></i>Carrito de Compras</h1>
                 </div>
             </div>
-            
-
-
-        </header>
+        </div>
         <!-- Carrito-->
         <section  class="page-section  bg-light">
 
@@ -79,11 +59,10 @@
                 
                 <div class="row">
                     <div class="col-md-8">
-                        <h3>Carrito</h3><hr>
                         <ul class="list-unstyled">
                             <li ng-repeat="producto in carrito track by $index">
                                 <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
                                         <img src="administracion/{{producto.imagen}}" class="img-fluid imgProduct rounded">
                                     </div>
                                     <div class="col-md-4">
@@ -124,23 +103,40 @@
                 
                     </div><!-- /div:col-md-8-->
                     <div class="col-md-4 border">
+                        <br/>
+                        <div class="col-md-12 bg-ligth rounded text-center"> 
+                            <div class="infoHeader">
+                                <strong class="text-muted" ng-if="storage().length ==  0">Carrito Vacio!</strong>
+                                <small>
+                                    <a ng-if="storage().length > 0" class="btn btn-primary" ng-click="vaciarCarro()">
+                                        <i class="fa fa-trash"></i>
+                                            Vaciar
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </a>
+                                </small>
+                            </div><!-- /div:infoHeader-->
+                            <span>{{ getCantItems('[name=subtotal]') |currency:'$'}}</span><small> ARS | </small>&nbsp;{{getCantItems('input[type=number]')}}<small> items</small>
+                         </div><!-- /div:col-md-12-->
+                         <hr/>
                         <div class="col-md-12">
                             <h5 class="text-muted text-center">Resumen de Compra</h5>
-                        </div>
+                        </div><!-- /div:col-md-12-->
+
                         <div class="float-left">
                             <p>{{getCantItems('input[type=number]')}} articulos por un total de </p>
-                        </div>
+                        </div><!-- /div:float-left-->
                         <div class="float-right">
                             <span class="text-muted">{{getCantItems('[name=subtotal]')|currency:'$'}} ARS</span>
-                        </div>
+                        </div><!-- /div:float-right-->
                         <div class="col-md-12" style="clear:both;">
                             <hr>
                             <div class="float-left">Total (impuestos inc.)</div><div class="float-right">{{getCantItems('[name=subtotal]') |currency:'$'}} ARS</div>
-                        </div>
+                        </div><!-- /div:col-md-12-->
 
                     </div><!-- /div:col-md-4-->
 
-                </div>
+                </div> <!-- /div:row-->
+            </div> <!-- /div:container-fluid-->
         </section>
         <!-- /carrito-->
 

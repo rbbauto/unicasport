@@ -45,6 +45,9 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 		$scope.total=$scope.getTotal();
 		localStorage.setItem("Items",JSON.stringify($scope.carrito));
 		$scope.items= $scope.storage().length;
+		$scope.getCantItems('input[type=number]');
+		$scope.getCantItems('[name=subtotal]');
+
 	};
 
 	$scope.vaciarCarro = function(){
