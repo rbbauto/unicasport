@@ -83,8 +83,8 @@
                         <ul class="list-unstyled">
                             <li ng-repeat="producto in carrito track by $index">
                                 <div class="row">
-                                    <div class="col-md-3">
-                                        <img src="administracion/{{producto.imagen}}" class="imgProduct rounded">
+                                    <div class="col-md-2">
+                                        <img src="administracion/{{producto.imagen}}" class="img-fluid imgProduct rounded">
                                     </div>
                                     <div class="col-md-4">
                                         <p>{{producto.nombre}}</p>
@@ -97,7 +97,11 @@
                                     <div class="col-md-2">
                                         <label class="text-muted">Sub-Total</label>
                                         <span>{{producto.precio * multiplica |currency:'$'}} ARS</span>
-                                        
+                                    </div>
+                                    <div class="col-md-2">
+                                       <a class="menu_links">
+                                           <i ng-click="delItem($index)" class="fa fa-trash fa-3x" aria-hidden="true"></i>
+                                       </a>
                                     </div>
                                 </div>
                                 <hr/>
