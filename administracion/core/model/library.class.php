@@ -102,7 +102,35 @@ class Crud{
         $query->bindParam("stock", $stock, PDO::PARAM_STR);
         $query->bindParam("activa", $activa, PDO::PARAM_STR);
         $query->bindParam("precio", $precio, PDO::PARAM_STR);
-        $query->execute();
+        
+        return $query->execute();
+    }
+
+     public function setItemCart($id_producto, $nombre, $hostname, $precio, $cantidad, $subtotal)
+    {   
+        $categoria = isset($categoria) ? $categoria : "Varios";
+        
+        try{
+            $query = $this->db->prepare(
+                "   INSERT INTO carrito (id, id_producto, nombre, hostname, precio, cantidad, subtotal ) 
+                    VALUES (NULL, :id_producto, :nombre, :hostname, :precio, :cantidad, :subtotal  )");
+            $query->bindParam("id_producto", $id_producto, PDO::PARAM_STR);
+            $query->bindParam("nombre", $nombre, PDO::PARAM_STR);
+            $query->bindParam("hostname", $hostname, PDO::PARAM_STR);
+            $query->bindParam("precio", $precio, PDO::PARAM_STR);
+            $query->bindParam("cantidad", $cantidad, PDO::PARAM_STR);
+            $query->bindParam("subtotal", $subtotal, PDO::PARAM_STR);
+            $query->execute();
+
+        return $query;
+                       
+        }catch(Exception $e){
+            http_response_code(400);
+            echo "fallo query: ". $e->$getError();
+        }
+
+        
+        
     }
 
    

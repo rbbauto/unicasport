@@ -58,15 +58,20 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 	};
 
 	$scope.refreshCant=function(){
-		this.producto.subtotal=this.producto.precio*this.multiplica
-		
+		this.producto.subtotal=this.producto.precio*this.multiplica;
+		this.producto.cantidad=this.multiplica;
+		localStorage.setItem("Items",JSON.stringify($scope.carrito));
 	};
 
 	$scope.enviarPedido=function(){
 		
-		$.post( "prueba.php", JSON.stringify(Debug.carrito) , function( data ) {
+		$.post( "core/controller/addToCart.controller.php", JSON.stringify(Debug.carrito) , function( data ) {
   			$( ".result" ).html( data );
-		});	
+		}).done(function() {
+    		window.location.replace("pedido.php")	
+		}).fail(function() {
+    		alert( "Hubo un erroe grave, por favor contacte al administrador!" );
+ 		});
 	};
 
 	$(".se-pre-con").hide();	
