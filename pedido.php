@@ -48,7 +48,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 text-center"> 
-                        <h1 class="text-muted"><i class="fas fa-shopping-cart"></i>Carrito de Compras</h1>
+                        <h1 class="text-muted"><i class="fas fa-shopping-cart"></i>Carrito de Compras: Pedido</h1>
                 </div>
             </div>
         </div>
@@ -65,18 +65,12 @@
                     </div><!-- /div:col-md-8-->
                     <div class="col-md-4 border">
                         <br/>
-                        <div class="col-md-12 bg-ligth rounded text-center"> 
-                            <div class="infoHeader">
-                                <strong class="text-muted" ng-if="storage().length ==  0">Carrito Vacio!</strong>
-                                <small>
-                                    <a ng-if="storage().length > 0" class="btn btn-primary" ng-click="vaciarCarro()">
-                                        <i class="fa fa-trash"></i>
-                                            Vaciar
-                                        <i class="fas fa-shopping-cart"></i>
-                                    </a>
-                                </small>
+                        <div class="col-md-12 bg-ligth rounded"> 
+                            <div class="">
+                               {{ storage().length}} Articulos 
                             </div><!-- /div:infoHeader-->
-                            <span>{{ getCantItems('[name=subtotal]') |currency:'$'}}</span><small> ARS | </small>&nbsp;{{getCantItems('input[type=number]')}}<small> items</small>
+                            <span>{{ getTotal() |currency:'$'}}</span><small> ARS</small> | 
+                            <small>Mostrar Detalle</small>
                          </div><!-- /div:col-md-12-->
                          <hr/>
                         <div class="col-md-12">
@@ -84,14 +78,15 @@
                         </div><!-- /div:col-md-12-->
 
                         <div class="float-left">
-                            <p>{{getCantItems('input[type=number]')}} articulos por un total de </p>
+                            <p> {{ storage().length}}<small> Articulo/s por un total de </small></p>
                         </div><!-- /div:float-left-->
                         <div class="float-right">
-                            <span class="text-muted">{{getCantItems('[name=subtotal]')|currency:'$'}} ARS</span>
+                             <p class="text-muted"><small>{{ getTotal() |currency:'$' }} ARS</small></p>
                         </div><!-- /div:float-right-->
                         <div class="col-md-12" style="clear:both;">
                             <hr>
-                            <div class="float-left">Total (impuestos inc.)</div><div class="float-right">{{getCantItems('[name=subtotal]') |currency:'$'}} ARS</div>
+                            <div class="float-left">Total (impuestos inc.)</div>
+                            <div class="float-right">{{ getTotal() |currency:'$'}} ARS</div>
                         </div><!-- /div:col-md-12-->
 
                     </div><!-- /div:col-md-4-->

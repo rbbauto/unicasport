@@ -61,12 +61,13 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 		this.producto.subtotal=this.producto.precio*this.multiplica;
 		this.producto.cantidad=this.multiplica;
 		localStorage.setItem("Items",JSON.stringify($scope.carrito));
+
 	};
 
 	$scope.enviarPedido=function(){
 		
 		$.post( "core/controller/addToCart.controller.php", JSON.stringify(Debug.carrito) , function( data ) {
-  			$( ".result" ).html( data );
+  			//$( ".result" ).html( data );
 		}).done(function() {
     		window.location.replace("pedido.php")	
 		}).fail(function() {
@@ -74,7 +75,32 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
  		});
 	};
 
-	$(".se-pre-con").hide();	
+	$(".se-pre-con").hide();
+
+	setTimeout(function(){
+		$('#carrito_total').on('DOMSubtreeModified',function(){
+			localStorage.setItem("Total",JSON.stringify(Number($(this).html())));
+		  
+		});
+	},1000);
+	
 
 }]); // _/controller
+
+var sumaFloat= function(valor1,valor2){
+	var val1=isNaN(valor1) ? parseFloat(valor1) : valor1 ;
+	var val2=isNaN(valor2) ? parseFloat(valor2) : valor2 ;
+	return val1 + val2;
+};
+
+$("#show_password").on("click",function(){
+   var x = document.getElementById("pass");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+});
+
+
 

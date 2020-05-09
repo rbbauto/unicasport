@@ -73,7 +73,8 @@
                                         <label for="cantidad" class="text-muted">Cantidad</label>
                                         <input
                                             ng-change="refreshCant()" 
-                                            ng-model="multiplica" 
+                                            ng-model="multiplica"
+                                            ng-value="producto.cantidad" 
                                             min="1" max="{{producto.stock}}" 
                                             class="form-control col-xs-2" 
                                             type="number" 
@@ -115,7 +116,7 @@
                                     </a>
                                 </small>
                             </div><!-- /div:infoHeader-->
-                            <span>{{ getCantItems('[name=subtotal]') |currency:'$'}}</span><small> ARS | </small>&nbsp;{{getCantItems('input[type=number]')}}<small> items</small>
+                           $<span id="carrito_total">{{ getCantItems('[name=subtotal]') |currency:''}}</span><small> ARS | </small>&nbsp;{{getCantItems('input[type=number]')}}<small> items</small>
                          </div><!-- /div:col-md-12-->
                          <hr/>
                         <div class="col-md-12">
