@@ -92,6 +92,7 @@
                                         />
                                     </div>
                                     <div class="col-md-2">
+                                        <br>
                                        <a class="menu_links">
                                            <i ng-click="delItem($index)" class="fa fa-trash fa-3x" aria-hidden="true"></i>
                                        </a>
@@ -114,13 +115,7 @@
                         <div class="col-md-12 bg-ligth rounded text-center"> 
                             <div class="infoHeader">
                                 <strong class="text-muted" ng-if="storage().length ==  0">Carrito Vacio!</strong>
-                                <small>
-                                    <a ng-if="storage().length > 0" class="btn btn-primary" ng-click="vaciarCarro()">
-                                        <i class="fa fa-trash"></i>
-                                            Vaciar
-                                        <i class="fas fa-shopping-cart"></i>
-                                    </a>
-                                </small>
+                                <strong class="text-muted" ng-if="storage().length >  0">Resumen de compra</strong>
                             </div><!-- /div:infoHeader-->
                            $<span class="carrito_total">{{ getCantItems('[name=subtotal]') |currency:''}}</span><small> ARS | </small>&nbsp;{{getCantItems('input[type=number]')}}<small> items</small>
                          </div><!-- /div:col-md-12-->

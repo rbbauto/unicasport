@@ -32,7 +32,9 @@ section{
 	margin-top: 75px;
 }
 .infoHeader{
-	padding-top: 5px
+	padding-top: 5px;
+  padding-left: 10px;
+
 }
 .imgProduct{
 	max-height: 130px;
@@ -94,13 +96,12 @@ text-align: left;
     opacity: 1;
 } 
 .infoCarrito{
-  border: 1px solid gray;
-  width: 400px;
+  border: 5px solid gray;
+  width: auto;
   padding:  15px 0px 15px 0px ; /*  up right  donw left */
-  margin:  15px 0px 15px 0px ; /*  up right  donw left */
   background: #fff;
   position: absolute;
-  z-index: 99999;
+  z-index: 9998;
   opacity: 1;
 }
 .imgInfoCarrito{

@@ -54,25 +54,26 @@
                  <div class="col-md-4 text-center"> 
                         <h1 class="text-muted"><i class="fas fa-shopping-cart"></i> Tienda en Linea</h1>
                 </div>
-                <div class="col-md-3 bg-light rounded"> 
+                <div class="col-md-3 bg-light rounded text-right"> 
                     <span>
                         <div class="infoHeader" id="infoCarritoTooltip">
-                            <div>
-                                <i class="fas fa-shopping-cart fa-2x"></i><strong class="text-muted" ng-if="storage().length ==  0">Carrito Vacio!</strong>
+                            <div class="text-center">
+                                <h3 class="text-muted text-center"><i class="fas fa-shopping-cart"></i> Carrito</h3>
+                                <strong class="text-muted" ng-if="storage().length ==  0">Carrito Vacio!</strong>
                               
                             </div>
-                            <div ng-if="carrito.length > 0">
+                            <div class="text-center" ng-if="carrito.length > 0">
                                  <span>{{ carrito.total |currency:'$'}}</span> <small>ARS |</small>&nbsp;{{carrito.items}}<small> items</small>
                             </div>
-                            <div class="infoCarrito" ng-if="carrito.length > 0">
+                            <div class="infoCarrito text-left" ng-if="carrito.length > 0">
                                 <h3 class="text-center text-muted">Carrito</h3>
-                                <ul class="list-group-flush">
+                                <ul class="list-unstyled">
                                     <li class="list-group-item" 
                                         ng-repeat="producto in carrito">
                                         <span><img class="imgInfoCarrito" src="administracion/{{producto.imagen}}"></span>
                                         <span class="text-muted">{{producto.nombre}} </span>
                                         <span> ${{producto.precio}}<small>ARS</small></span>
-                                    </li>
+                                        </li>
                                 </ul>
                                 
                                 <div class="text-center">
@@ -98,7 +99,7 @@
 
             <div class="container-fluid">
                 <div class="row">
-                    <div ng-repeat="producto in productos |filter:buscarProductos" class="col-sm-3" id="{{$index}}">
+                    <div ng-repeat="producto in productos |filter:buscarProductos" class="col-sm-2" id="{{$index}}">
 
                         <div class="card">
                             <img class="card-img-top imgProducto" src="administracion/{{producto.imagen}}"
@@ -109,12 +110,8 @@
                                     title="<p class='text-left'>{{producto.descripcion}}</p>"
                             >  
                             <div class="card-body bg-light">
-                                <h4 class="card-title">{{producto.nombre}}</h4>
-                                <h3> <span>{{producto.precio |currency:'$'}} </span> ARS</h3>
-                                <h5>Categoria: {{producto.categoria}}</h5>
-                                <div class="excerpt">
-                                        
-                                </div>
+                                <h6 class="card-title">{{producto.nombre}}</h6>
+                                 <span class="text-muted">{{producto.precio |currency:'$'}} </span> ARS
                                 <hr class="divider" />
                     
                                 <button ng-click="agregaAlCarrito($index)" class="btn btn-primary" data-toggle="modal" data-target="#modal_carrito">Agregar al Carrito</button>

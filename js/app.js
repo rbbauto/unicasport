@@ -83,7 +83,7 @@ app.controller('productos', ['$scope','$http', function($scope,$http){
 
 	setTimeout(function(){
 		$('[data-toggle="tooltip"]').tooltip({
- 		    'delay': { show: 0, hide: 330 }
+ 		    'delay': { show: 200, hide: 330 }
 });
 	},500); 
 
