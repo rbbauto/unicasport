@@ -8,7 +8,11 @@ app.controller('productos', ['$scope','$http', function($scope,$http){
 
 	$scope.storage= function(){
 		return JSON.parse(localStorage.getItem("Items")) != null ? JSON.parse(localStorage.getItem("Items")) : [];
-	}
+	};
+
+	$scope.getTotal=function(){
+		return JSON.parse(localStorage.getItem("Total")) != null ? JSON.parse(localStorage.getItem("Total")) : 0;
+	};
 
 	$scope.productos = [];
 
@@ -63,15 +67,14 @@ app.controller('productos', ['$scope','$http', function($scope,$http){
 		localStorage.clear();
 		$scope.carrito=[];
 		$scope.carrito.items = $scope.storage().length;
-		$scope.carrito.total=JSON.parse(localStorage.getItem("Total")) != null ? JSON.parse(localStorage.getItem("Total")) : "";
-	}
-	
+		$scope.carrito.total= $scope.getTotal();
+	};
 	
 	$(".se-pre-con").hide();
 
 	$scope.listProducts();
 	$scope.carrito.items = $scope.storage().length;
-	$scope.carrito.total=JSON.parse(localStorage.getItem("Total")) != null ? JSON.parse(localStorage.getItem("Total")) : "";
+	$scope.carrito.total= $scope.getTotal();
 
 	
 }]); // _/controller

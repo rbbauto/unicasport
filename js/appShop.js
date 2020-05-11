@@ -11,7 +11,7 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 	};
 
 	$scope.getTotal=function(){
-		return JSON.parse(localStorage.getItem("Total")) != null ? JSON.parse(localStorage.getItem("Total")) : "";
+		return JSON.parse(localStorage.getItem("Total")) != null ? JSON.parse(localStorage.getItem("Total")) : 0;
 	};
 
 	$scope.multiplica=1;
@@ -54,7 +54,7 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 		localStorage.clear();
 		$scope.carrito=[];
 		$scope.items = $scope.storage().length;
-		$scope.total=JSON.parse(localStorage.getItem("Total")) != null ? JSON.parse(localStorage.getItem("Total")) : "";
+		
 	};
 
 	$scope.refreshCant=function(){
@@ -78,9 +78,8 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 	$(".se-pre-con").hide();
 
 	setTimeout(function(){
-		$('#carrito_total').on('DOMSubtreeModified',function(){
-			localStorage.setItem("Total",JSON.stringify(Number($(this).html())));
-		  
+		$('.carrito_total').on('DOMSubtreeModified',function(){
+			localStorage.setItem("Total",JSON.stringify(Number($(this).html().replace(",",""))));
 		});
 	},1000);
 	

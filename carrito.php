@@ -99,6 +99,12 @@
                                 </div>
                                 <hr/>
                             </li>
+                            <li ng-if="carrito.length == 0">
+                                <h2 class="text-muted text-center">
+                                    <br><hr>No hay productos en el carrito!
+                                </h2>
+                                <hr>
+                            </li>
                             
                         </ul>
                 
@@ -116,7 +122,7 @@
                                     </a>
                                 </small>
                             </div><!-- /div:infoHeader-->
-                           $<span id="carrito_total">{{ getCantItems('[name=subtotal]') |currency:''}}</span><small> ARS | </small>&nbsp;{{getCantItems('input[type=number]')}}<small> items</small>
+                           $<span class="carrito_total">{{ getCantItems('[name=subtotal]') |currency:''}}</span><small> ARS | </small>&nbsp;{{getCantItems('input[type=number]')}}<small> items</small>
                          </div><!-- /div:col-md-12-->
                          <hr/>
                         <div class="col-md-12">
@@ -136,7 +142,7 @@
                         <br>
                         <hr/>
                         <div class="col-md-12 text-center">
-                            <button class="btn btn-primary" ng-click="enviarPedido()">Finalizar Pedido</button>
+                            <button class="btn btn-primary" ng-click="enviarPedido()" ng-disabled="carrito.length == 0">Finalizar Pedido</button>
                         </div><!-- /div:col-md-12-->
 
                     </div><!-- /div:col-md-4-->
