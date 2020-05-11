@@ -54,16 +54,36 @@
                  <div class="col-md-4 text-center"> 
                         <h1 class="text-muted"><i class="fas fa-shopping-cart"></i> Tienda en Linea</h1>
                 </div>
-                <div class="col-md-3 bg-light rounded text-center"> 
+                <div class="col-md-3 bg-light rounded"> 
                     <span>
-                        <div class="infoHeader">
-                            <i class="fas fa-shopping-cart fa-2x"></i><strong class="text-muted" ng-if="storage().length ==  0">Carrito Vacio!</strong>
-                            <small>
-                                <a ng-if="storage().length > 0" class="btn btn-primary" ng-click="vaciarCarro()">Vaciar</a>
-                                <a ng-if="storage().length > 0" href="carrito.php" class="btn btn-success">Finalizar Compra</a>
-                            </small>
+                        <div class="infoHeader" id="infoCarritoTooltip">
+                            <div>
+                                <i class="fas fa-shopping-cart fa-2x"></i><strong class="text-muted" ng-if="storage().length ==  0">Carrito Vacio!</strong>
+                              
+                            </div>
+                            <div ng-if="carrito.length > 0">
+                                 <span>{{ carrito.total |currency:'$'}}</span> <small>ARS |</small>&nbsp;{{carrito.items}}<small> items</small>
+                            </div>
+                            <div class="infoCarrito" ng-if="carrito.length > 0">
+                                <h3 class="text-center text-muted">Carrito</h3>
+                                <ul class="list-group-flush">
+                                    <li class="list-group-item" 
+                                        ng-repeat="producto in carrito">
+                                        <span><img class="imgInfoCarrito" src="administracion/{{producto.imagen}}"></span>
+                                        <span class="text-muted">{{producto.nombre}} </span>
+                                        <span> ${{producto.precio}}<small>ARS</small></span>
+                                    </li>
+                                </ul>
+                                
+                                <div class="text-center">
+                                    <small>
+                                    <a ng-if="storage().length > 0" class="btn btn-primary" ng-click="vaciarCarro()">       Vaciar</a>
+                                    <a ng-if="storage().length > 0" href="carrito.php" class="btn btn-success">Ir al carrito</a>
+                                    </small>
+                                </div>
+                            </div>
                         </div>
-                        <span>{{ carrito.total |currency:'$'}}</span> <small>ARS |</small>&nbsp;{{carrito.items}}<small> items</small>
+                       
 
                     </span>
 
@@ -79,14 +99,21 @@
             <div class="container-fluid">
                 <div class="row">
                     <div ng-repeat="producto in productos |filter:buscarProductos" class="col-sm-3" id="{{$index}}">
+
                         <div class="card">
-                            <img class="card-img-top imgProducto" src="administracion/{{producto.imagen}}" alt="Card image cap">  
-                            <div class="card-body">
+                            <img class="card-img-top imgProducto" src="administracion/{{producto.imagen}}"
+                             alt="Card image cap"
+                             data-placement="bottom"
+                                    data-toggle="tooltip" 
+                                    data-html="true" 
+                                    title="<p class='text-left'>{{producto.descripcion}}</p>"
+                            >  
+                            <div class="card-body bg-light">
                                 <h4 class="card-title">{{producto.nombre}}</h4>
                                 <h3> <span>{{producto.precio |currency:'$'}} </span> ARS</h3>
                                 <h5>Categoria: {{producto.categoria}}</h5>
                                 <div class="excerpt">
-                                    <p class="card-text">{{producto.descripcion}}</p>    
+                                        
                                 </div>
                                 <hr class="divider" />
                     

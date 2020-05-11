@@ -42,8 +42,10 @@ app.controller('productos', ['$scope','$http', function($scope,$http){
 	//agrega producto al carrito
 
 	$scope.agregaAlCarrito	=	function(index){
+		setTimeout(function(){
+			$(".infoCarrito").hide();
+		},10);
 		var checkDuplicate=Object.keys($scope.storage());
-
 		$scope.carrito.item=$scope.productos[index];
 		$scope.carrito.item.subtotal=$scope.productos[index].precio;
 		$scope.carrito.item.cantidad=1;
@@ -70,11 +72,20 @@ app.controller('productos', ['$scope','$http', function($scope,$http){
 		$scope.carrito.total= $scope.getTotal();
 	};
 	
-	$(".se-pre-con").hide();
+	setTimeout(function(){
+		$(".se-pre-con").hide();
+		$(".infoCarrito").hide();
+	},1000);
 
 	$scope.listProducts();
 	$scope.carrito.items = $scope.storage().length;
 	$scope.carrito.total= $scope.getTotal();
+
+	setTimeout(function(){
+		$('[data-toggle="tooltip"]').tooltip({
+ 		    'delay': { show: 0, hide: 330 }
+});
+	},500); 
 
 	
 }]); // _/controller
@@ -83,4 +94,12 @@ var sumaFloat= function(valor1,valor2){
 	var val1=isNaN(valor1) ? parseFloat(valor1) : valor1 ;
 	var val2=isNaN(valor2) ? parseFloat(valor2) : valor2 ;
 	return val1 + val2;
-}
+};
+
+$("#infoCarritoTooltip").mouseover(function(){
+	$(".infoCarrito").is(":visible") ?
+		$(".infoCarrito").mouseout(function(){
+			$(".infoCarrito").hide() ;
+		}) 		: 
+		$(".infoCarrito").show() ;
+});

@@ -9,18 +9,23 @@
                 <div class="container">
                     <div class="row">
                     
-                        <div class="col-md-4">
-                            <img class="img-fluid" src="administracion/{{carrito.item.imagen}}">
+                        <div class="col-md-4 text-center">
+                            <img class="img-fluid imgProduct" src="administracion/{{carrito.item.imagen}}">
                         </div>
 
                          <div class="col-md-4">
-                            <h1>{{carrito.item.nombre}}</h1>
-                            <h2><span>{{carrito.item.precio |currency:'$' }} ARS</span></h2>
-                             <p>{{carrito.item.descripcion}}</p>
+                            <br>
+                            <h4>{{carrito.item.nombre}}</h4>
+                            
+                            <h5><span>{{carrito.item.precio |currency:'$' }} ARS</span></h5>
+                            
+                             
                          </div>
 
                          <div class="col-md-4">
-                             <p></p>
+                            <br>
+                            <p>Puedes elegir la cantidad en el carrito</p> 
+                            
                          </div>
                        
 
@@ -30,7 +35,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-dismiss="modal">Seguir Comprando</button>
-                    <a href="carrito.php" class="btn btn-primary">Finalizar Compra</a>
+                    <a href="carrito.php" class="btn btn-primary">Ir al carrito</a>
                 </div>
             </div>
         </div>
