@@ -14,6 +14,8 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 		return JSON.parse(localStorage.getItem("Total")) != null ? JSON.parse(localStorage.getItem("Total")) : 0;
 	};
 
+	$scope.pedido=[];
+
 	$scope.multiplica=1;
 
 	$scope.carrito=[];
@@ -33,6 +35,14 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 	    });
 	    return sum;
 	};
+
+	$scope.getCantItemsCart=function(){
+		var total=0;
+		for(i=0; i < $scope.carrito.length;i++){
+			total = total + $scope.carrito[i].cantidad;
+		}
+		return total;
+	}
 
 	
 

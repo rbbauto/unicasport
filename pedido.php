@@ -67,7 +67,7 @@
                         <br/>
                         <div class="col-md-12 bg-ligth rounded"> 
                             <div class="">
-                               {{ storage().length}} Articulos 
+                               {{ getCantItemsCart()}} Articulos 
                             </div><!-- /div:infoHeader-->
                             <span>{{ getTotal() |currency:'$'}}</span><small> ARS</small> | 
                             <small>Mostrar Detalle</small>
@@ -78,7 +78,7 @@
                         </div><!-- /div:col-md-12-->
 
                         <div class="float-left">
-                            <p> {{ storage().length}}<small> Articulo/s por un total de </small></p>
+                            <p> {{ getCantItemsCart() }}<small> Articulo/s por un total de </small></p>
                         </div><!-- /div:float-left-->
                         <div class="float-right">
                              <p class="text-muted"><small>{{ getTotal() |currency:'$' }} ARS</small></p>
