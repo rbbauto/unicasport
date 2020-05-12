@@ -66,7 +66,7 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 
 	$scope.enviarPedido=function(){
 		
-		$.post( "core/controller/addToCart.controller.php", JSON.stringify(Debug.carrito) , function( data ) {
+		$.post( "core/controller/addToCart.controller.php", JSON.stringify($scope.carrito) , function( data ) {
   			//$( ".result" ).html( data );
 		}).done(function() {
     		window.location.replace("pedido.php")	

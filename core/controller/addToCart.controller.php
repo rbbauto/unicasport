@@ -4,15 +4,37 @@
 	require_once"../../administracion/core/model/library.class.php";
 
 	
-	if (count($data) > 0) {
+	if (count($data) > 0) 
+	{
 
 		$crud = new Crud();
 		
-		foreach ($data as  $item) {
-			$sql=$crud->setItemCart($item['id'], $item['nombre'], gethostname(), $item['precio'], $item['cantidad'], $item['subtotal']);
-		}
-		if (!$sql) {
-			http_response_code(400);
+		if(!$crud->checkHostnameExist(gethostname()))
+		{
+			foreach ($data as  $item) 
+			{
+				$sql=$crud->setItemCart($item['id'], $item['nombre'], gethostname(), $item['precio'], $item['cantidad'], $item['subtotal']);
+			}
+			if (!$sql) 
+			{
+				http_response_code(400);
+			}
+		}else
+		{
+			if ($crud->delAllCartItems())
+			{
+
+			
+				foreach ($data as  $item) 
+				{
+					$sql=$crud->setItemCart($item['id'], $item['nombre'], gethostname(), $item['precio'], $item['cantidad'], $item['subtotal']);
+
+				}
+				if (!$sql) 
+				{
+					http_response_code(400);
+				}
+			}
 		}
 	}
 

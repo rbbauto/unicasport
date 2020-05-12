@@ -10,7 +10,7 @@ class Pedido{
         $this->db = DB();
     }
 
-
+    
     public function getItems()
     {
         $query = $this->db->prepare("SELECT * FROM carrito");

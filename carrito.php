@@ -93,8 +93,8 @@
                                     </div>
                                     <div class="col-md-2">
                                         <br>
-                                       <a class="menu_links">
-                                           <i ng-click="delItem($index)" class="fa fa-trash fa-3x" aria-hidden="true"></i>
+                                       <a class="menu_links" ng-click="delItem($index)">
+                                           <i class="fa fa-trash fa-3x" aria-hidden="true"></i>
                                        </a>
                                     </div>
                                 </div>

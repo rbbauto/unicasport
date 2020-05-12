@@ -126,11 +126,34 @@ class Crud{
                        
         }catch(Exception $e){
             http_response_code(400);
-            echo "fallo query: ". $e->$getError();
+            echo "fallo query: ". $e->getMessage();
         }
 
         
         
+    }
+
+    public function checkHostnameExist($host)
+    {
+        $query = $this->db->prepare("SELECT * FROM carrito WHERE hostname = '$host'");
+        $query->execute();
+        if($query->rowCount() > 0){
+            return true;
+
+        }else{
+            return false;
+        }   
+    }
+
+    public function delAllCartItems(){
+        $query = $this->db->prepare("DELETE FROM carrito WHERE hostname = '" . gethostname() . "'");
+        if ($query->execute()) 
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
     }
 
    
