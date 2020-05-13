@@ -1,33 +1,43 @@
 var app	=	angular.module('appShop',[]);
 
-var Debug;
+var Debug; // global
 
 app.controller('carrito', ['$scope','$http', function($scope,$http){
 
+	// variable para debugear en consola
 	Debug= $scope;
 
+	// metodo que devuelve el carrito almacenado en memoria local
 	$scope.storage= function(){
 		return JSON.parse(localStorage.getItem("Items")) != null ? JSON.parse(localStorage.getItem("Items")) : "";
 	};
 
+	// metodo que devuelve el total almacenado en memoria local
 	$scope.getTotal=function(){
 		return JSON.parse(localStorage.getItem("Total")) != null ? JSON.parse(localStorage.getItem("Total")) : 0;
 	};
 
-	$scope.pedido=[];
+	$scope.setPedido=function(){
+		localStorage.setItem("Pedido",JSON.stringify($scope.pedido));
+	};
 
-	$scope.multiplica=1;
+	$scope.getPedido=function(){
+		return JSON.parse(localStorage.getItem("Pedido")) != null ? JSON.parse(localStorage.getItem("Pedido")) : {};
+	};
 
-	$scope.carrito=[];
+	$scope.pedido=$scope.getPedido(); // objeto pedido
 
-	$scope.total=JSON.parse(localStorage.getItem("Total"));
+	//$scope.multiplica=1; // valor inicial para
 
-	$scope.items= $scope.storage().length;
+	$scope.carrito=[]; // array carrito
 
-	
+	$scope.total=$scope.getTotal(); // obtiene el total almacenado en memoria local
 
-	$scope.carrito=$scope.storage();
+	$scope.items= $scope.storage().length; // obtiene la cantidad de items
 
+	$scope.carrito=$scope.storage(); // recupera de memoria local el carrito
+
+	// obtiene la cantidad de items cuando se cambia la cantidad en form
 	$scope.getCantItems = function(selector) {
 	    var sum = 0; 
 	    $(selector).each(function() {
@@ -36,6 +46,7 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 	    return sum;
 	};
 
+	// obtiene la cantidad de items desde el array carrito
 	$scope.getCantItemsCart=function(){
 		var total=0;
 		for(i=0; i < $scope.carrito.length;i++){
@@ -46,7 +57,7 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 
 	
 
-
+	// borra un item del carrito y actualiza todo lo relacionado
 	$scope.delItem=function(index){
 		var tempTotal=$scope.getTotal();
 		var result= tempTotal - parseFloat($scope.carrito[index].precio);
@@ -60,6 +71,7 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 
 	};
 
+	// vacia el carrito
 	$scope.vaciarCarro = function(){
 		localStorage.clear();
 		$scope.carrito=[];
@@ -67,6 +79,7 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 		
 	};
 
+	// cuando cambia la cantidad en form:carrito actualiza y almacena en local
 	$scope.refreshCant=function(){
 		this.producto.subtotal=this.producto.precio*this.multiplica;
 		this.producto.cantidad=this.multiplica;
@@ -74,6 +87,7 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 
 	};
 
+	// envia a la db el pedido
 	$scope.enviarPedido=function(){
 		
 		$.post( "core/controller/addToCart.controller.php", JSON.stringify($scope.carrito) , function( data ) {
@@ -81,13 +95,73 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 		}).done(function() {
     		window.location.replace("pedido.php")	
 		}).fail(function() {
-    		alert( "Hubo un erroe grave, por favor contacte al administrador!" );
+    		alert( "Hubo un error grave, por favor contacte al administrador!" );
  		});
 	};
 
-	$(".se-pre-con").hide();
+	// envia a la db el pedido
+	$scope.confirmarPedido=function(){
+		
+		$.post( "core/controller/confirmCart.controller.php", JSON.stringify($scope.pedido) , function( data ) {
+  			//$( ".result" ).html( data );
+		}).done(function() {
+			$scope.setPedido();
+    		$("#checkDatos").removeClass('invisible');
+    		$("[data-target='#datos']").attr("data-target",null);
+    		$("#headingOne").removeClass( "bg-dark");
+    		$("#checkDir").removeClass('invisible');
+    		$("[data-target='#direccion']").attr("data-target",null);
+    		$("#headingTwo").removeClass( "bg-dark");	
+		}).fail(function() {
+    		alert( "Hubo un error grave, por favor contacte al administrador!" );
+ 		});
+	};
 
+	$scope.actualizarPedido=function(){
+		
+		$.post( "core/controller/updateCart.controller.php", JSON.stringify($scope.pedido) , function( data ) {
+  			//$( ".result" ).html( data );
+		}).done(function() {
+			$scope.setPedido();    			
+		}).fail(function() {
+    		alert( "Hubo un error grave, por favor contacte al administrador!" );
+ 		});
+	};
+
+	$scope.checkPedido=function(){
+		if ($scope.objectSize($scope.pedido) > 0) {
+			$("#datos").collapse();
+			$("[data-target='#datos']").attr("data-target",null);
+    		$("#headingOne").removeClass( "bg-dark");
+    		$("[data-target='#direccion']").attr("data-target",null);
+    		$("#headingTwo").removeClass( "bg-dark");
+    		setTimeout(function(){$("#envio").collapse('show');},33);
+		}
+	};
+
+	$scope.objectSize = function(obj) {
+    	var size = 0, key;
+    	for (key in obj) 
+    	{
+        	if (obj.hasOwnProperty(key)) size++;
+    	}
+    	return size;
+	};
+
+	$scope.editShow=function(dom){
+		$("#" + dom ).collapse('show');
+	};
+
+	$scope.editHide=function(dom){
+		$("#" + dom ).collapse('show');
+	};
+
+
+	$(".se-pre-con").hide(); // oculta el loader
+
+	// listener para modificar en local el total
 	setTimeout(function(){
+		$scope.checkPedido();
 		$('.carrito_total').on('DOMSubtreeModified',function(){
 			localStorage.setItem("Total",JSON.stringify(Number($(this).html().replace(",",""))));
 		});
@@ -96,12 +170,16 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 
 }]); // _/controller
 
+// ambito global
+
+//suma flotantes y devuelve resultado
 var sumaFloat= function(valor1,valor2){
 	var val1=isNaN(valor1) ? parseFloat(valor1) : valor1 ;
 	var val2=isNaN(valor2) ? parseFloat(valor2) : valor2 ;
 	return val1 + val2;
 };
 
+// muestra oculta el password en pedido
 $("#show_password").on("click",function(){
    var x = document.getElementById("pass");
   if (x.type === "password") {
@@ -110,6 +188,9 @@ $("#show_password").on("click",function(){
     x.type = "password";
   }
 });
+
+
+
 
 
 

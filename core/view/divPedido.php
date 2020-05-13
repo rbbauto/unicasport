@@ -1,13 +1,15 @@
 <div class="accordion" id="accordionExample">
     <div class="card">
-        <div class="card-header bg-dark" id="headingOne">
+        <div class="card-header bg-dark bg-custom" id="headingOne">
             <a class="menu_links">
             <h3 class="col-md-12 text-muted" data-toggle="collapse" data-target="#datos" aria-expanded="true" aria-controls=" collapseOne">
-            1 Datos Personales
+            1 Datos Personales 
+            <i ng-if="objectSize(pedido) > 3" id="checkDatos" class="fas fa-check text-success"></i>
+            <i ng-if="objectSize(pedido) > 3" ng-click="editShow('datos')" class="fas fa-edit text-info"></i>
             </h3>  
             </a>
         </div>
-        <form method="post" action="prueba.php">
+        
         <div id="datos" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
                 <nav>
@@ -26,13 +28,13 @@
                         <input ng-model="pedido.apellido" type="text" name="apellidos" class="form-control">
 
                         <label for="email">Direccion de correo electronico</label>
-                        <input type="email" name="email" class="form-control">
+                        <input ng-model="pedido.email" type="email" name="email" class="form-control">
                         <hr>
                         <strong>Cree una cuenta</strong><i>(opcional)</i>
                         <p class="text-muted">¡Y ahorre tiempo en su próximo pedido!</p>
                         <label for="password">Contraseña</label>
                         <div class="input-group">
-                            <input type="password" id="pass" name="password" class="form-control">
+                            <input  ng-model="pedido.contrasenia" type="password" id="pass" name="password" class="form-control">
                             <div class="input-group-append">
                                 <button id="show_password" class="btn btn-primary" type="button">
                                     <span class="fa fa-eye-slash icon"></span>
@@ -41,7 +43,9 @@
                         </div>
                         <hr>
                         <div class="form-row float-right">
-                            <button data-toggle="collapse" data-target="#direccion" aria-expanded="true" class="btn btn-success">Continuar</button>
+                            <button ng-if="objectSize(pedido) < 1" data-toggle="collapse" data-target="#direccion" aria-expanded="true" class="btn btn-success">Continuar</button>
+
+                            <button ng-if="objectSize(pedido) > 0" ng-click="editShow('direccion')" class="btn btn-success">Continuar</button>
                          </div>
                          <br>
                     </div><!-- /div:form-group -->
@@ -51,7 +55,7 @@
                                 role="tabpanel" 
                                 aria-labelledby="nav-profile-tab">
                         
-                            <form class="form-signin" method="post" action="login.php">
+                            <form class="form-signin" method="post" action="administracion/loginPedido.php">
                                 <img class="mb-4" src="administracion/assets/imgDefault/login.jpg" alt="" width="72" height="72">
                                 <h1 class="h3 mb-3 font-weight-normal"><i class="fas fa-shopping-cart"></i> Tienda Virtual</h1>
                                 <label for="inputEmail" class="sr-only">Nombre Usuario</label>
@@ -67,10 +71,12 @@
         </div>
     </div>
     <div class="card">
-        <div class="card-header bg-dark" id="headingTwo">
+        <div class="card-header bg-dark  bg-custom" id="headingTwo">
             <a class="menu_links">
             <h3 class="col-md-12 text-muted" data-toggle="collapse" data-target="#direccion" aria-expanded="true" aria-controls=" collapseOne">
-            2 Direcciones
+            2 Direcciones 
+            <i ng-if="objectSize(pedido) > 12" id="checkDatos" class="fas fa-check text-success"></i>
+            <i ng-if="objectSize(pedido) > 12" ng-click="editShow('direccion')" class="fas fa-edit text-info"></i>
             </h3>  
             </a>
         </div>
@@ -90,52 +96,57 @@
                     <div class="form-row">
                         <div class="col">
                             <label for="">Empresa</label>
-                            <input class="form-control" type="" name="empresa">
+                            <input ng-model="pedido.empresa" class="form-control" type="" name="empresa">
                         </div>
                         <div class="col">
                             <label for="">CUIT/CUIL/DNI</label>
-                            <input class="form-control" type="" name="cuit">
+                            <input ng-model="pedido.cuit" class="form-control" type="" name="cuit">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col">
                             <label for="">Dirección</label>
-                            <input class="form-control" type="" name="direccion">
+                            <input ng-model="pedido.direccion" class="form-control" type="" name="direccion">
                         </div>
                         <div class="col">
                             <label for="">Código postal/Zip </label>
-                            <input class="form-control" type="" name="cp">
+                            <input ng-model="pedido.cp" class="form-control" type="" name="cp">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col">
                             <label for="">Ciudad</label>
-                            <input class="form-control" type="" name="ciudad">
+                            <input ng-model="pedido.ciudad" class="form-control" type="" name="ciudad">
                         </div>
                         <div class="col">
                             <label for="">Provincia</label>
-                            <input class="form-control" type="" name="moreno">
+                            <input ng-model="pedido.provincia" class="form-control" type="" name="provincia">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col">
                             <label for="">Pais</label>
-                            <input class="form-control" type="" name="pais">
+                            <input ng-model="pedido.pais" class="form-control" type="" name="pais">
                         </div>
                         <div class="col">
                             <label for="">Telefono</label>
-                            <input class="form-control" type="" name="telefono">
+                            <input ng-model="pedido.telefono" class="form-control" type="" name="telefono">
                         </div>
                     </div>
                     <div class="form-check col">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked>
+                        <input  ng-model="pedido.checkboxFacturarAca" class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked>
                         <label class="form-check-label" for="defaultCheck1">
                         <i>Utilizar esta dirección para facturas también</i>
                       </label>
                     </div>
                     <hr>
                     <div class="form-row float-right">
-                        <button data-toggle="collapse" data-target="#envio" aria-expanded="true" class="btn btn-success">Continuar</button>
+                        <button
+                            ng-click="confirmarPedido()" 
+                            data-toggle="collapse" 
+                            data-target="#envio" 
+                            aria-expanded="true" 
+                            class="btn btn-success">Continuar</button>
                     </div>
                     <br>
                 </div>
@@ -143,10 +154,10 @@
         </div>
     </div>
     <div class="card">
-        <div class="card-header bg-dark" id="headingThree">
+        <div class="card-header bg-dark bg-custom" id="headingThree">
             <a class="menu_links text-muted">
             <h3 class="col-md-12" data-toggle="collapse" data-target="#envio" aria-expanded="true" aria-controls=" collapseOne">
-            3 Metodo de Envio
+            3 Metodo de Envio <i id="checkEnvio" class="fas fa-check text-success invisible"></i>
             </h3>  
             </a>
         </div>
@@ -157,10 +168,10 @@
         </div>
     </div>
     <div class="card">
-        <div class="card-header bg-dark" id="headingThree">
+        <div class="card-header bg-dark bg-custom" id="headingThree">
             <a class="menu_links text-muted">
             <h3 class="col-md-12" data-toggle="collapse" data-target="#pago" aria-expanded="true" aria-controls=" collapseOne">
-             4 Pago
+             4 Pago <i id="checkPago" class="fas fa-check text-success invisible"></i>
             </h3>  
             </a>
         </div>
@@ -174,6 +185,6 @@
                         <input type="submit" class="btn btn-success" value="Finalizar">
             </div>
         </div>
-    </form>
+    
     </div>
 </div>

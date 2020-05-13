@@ -1,4 +1,6 @@
 <?php
+
+
     require_once("core/model/config.php");
     
     class ConectDB{
