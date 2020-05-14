@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 require __DIR__ . '/database_connection.php';
 
 class Crud{
@@ -159,9 +159,10 @@ class Crud{
 
     public function setCliente($nombre,$apellido,$email,$telefono,$empresa,$cuit,$direccion,$ciudad,$provincia,$pais,$cp,$pass,$isFactDir)
     {   
+        $host= gethostname();
         $query = $this->db->prepare("INSERT INTO 
                                     logincliente(id,
-                                                username,
+                                                email,
                                                 password,
                                                 nombre,
                                                 apellido,
@@ -172,10 +173,10 @@ class Crud{
                                                 pais,
                                                 empresa,
                                                 cuit,
-                                                codigo_postal,
-                                                es_dir_factura,
+                                                cp,
+                                                checkboxFacturarAca,
                                                 hostname)
-                                    VALUES (null,   :username,
+                                    VALUES (null,   :email,
                                                     :password,
                                                     :nombre,
                                                     :apellido,
@@ -186,10 +187,10 @@ class Crud{
                                                     :pais,
                                                     :empresa,
                                                     :cuit,
-                                                    :codigo_postal,
-                                                    :es_dir_factura,
+                                                    :cp,
+                                                    :checkboxFacturarAca,
                                                     :hostname)");
-        $query->bindParam("username", $email, PDO::PARAM_STR);
+        $query->bindParam("email", $email, PDO::PARAM_STR);
         $query->bindParam("password", $pass, PDO::PARAM_STR);
         $query->bindParam("nombre", $nombre, PDO::PARAM_STR);
         $query->bindParam("apellido", $apellido, PDO::PARAM_STR);
@@ -200,9 +201,9 @@ class Crud{
         $query->bindParam("pais", $pais, PDO::PARAM_STR);
         $query->bindParam("empresa", $empresa, PDO::PARAM_STR);
         $query->bindParam("cuit", $cuit, PDO::PARAM_STR);
-        $query->bindParam("codigo_postal", $cp, PDO::PARAM_STR);
-        $query->bindParam("es_dir_factura", $isFactDir, PDO::PARAM_STR);
-        $query->bindParam("hostname", gethostname(), PDO::PARAM_STR);
+        $query->bindParam("cp", $cp, PDO::PARAM_STR);
+        $query->bindParam("checkboxFacturarAca", $isFactDir, PDO::PARAM_STR);
+        $query->bindParam("hostname",$host, PDO::PARAM_STR);
         
         
         if ($query->execute()) 
@@ -218,7 +219,8 @@ class Crud{
 
     }
 
-    public function delPedido($email){
+    public function delPedido($email)
+    {
         $query = $this->db->prepare("DELETE FROM logincliente WHERE username = '$email'");
         if ($query->execute()) 
         {
@@ -226,6 +228,19 @@ class Crud{
         }else
         {
             return false;
+        }
+    }
+
+    public function checkLoginCliente($email,$pass)
+    {
+        $query = $this->db->query("SELECT * FROM logincliente WHERE email = '$email' AND password = '$pass'");
+        $query->execute();
+        if ($query->rowCount() > 0) 
+        {
+            http_response_code(200);
+            return $query->fetchAll(PDO::FETCH_ASSOC);
+        }else{
+            http_response_code(400);
         }
     }   
 

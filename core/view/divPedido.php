@@ -22,13 +22,13 @@
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input ng-model="pedido.nombre" type="text" name="nombre" class="form-control">
+                        <input ng-model="pedido.nombre" type="text" name="nombre" class="form-control" required>
 
                         <label for="nombre">Apellidos</label>
-                        <input ng-model="pedido.apellido" type="text" name="apellidos" class="form-control">
+                        <input ng-model="pedido.apellido" type="text" name="apellidos" class="form-control" required>
 
                         <label for="email">Direccion de correo electronico</label>
-                        <input ng-model="pedido.email" type="email" name="email" class="form-control">
+                        <input ng-model="pedido.email" type="email" name="email" class="form-control" required>
                         <hr>
                         <strong>Cree una cuenta</strong><i>(opcional)</i>
                         <p class="text-muted">¡Y ahorre tiempo en su próximo pedido!</p>
@@ -55,14 +55,12 @@
                                 role="tabpanel" 
                                 aria-labelledby="nav-profile-tab">
                         
-                            <form class="form-signin" method="post" action="administracion/loginPedido.php">
+                            <form class="form-signin">
                                 <img class="mb-4" src="administracion/assets/imgDefault/login.jpg" alt="" width="72" height="72">
                                 <h1 class="h3 mb-3 font-weight-normal"><i class="fas fa-shopping-cart"></i> Tienda Virtual</h1>
-                                <label for="inputEmail" class="sr-only">Nombre Usuario</label>
-                                <input type="text" name="nombre" class="form-control" placeholder="Nombre Usuario" required autofocus>
-                                <label for="inputPassword" class="sr-only">Contraseña</label>
-                                <input type="password" name="contrasenia" class="form-control" placeholder="Contraseña" required>
-                                <button class="btn btn-lg btn-primary btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Conectar</button>
+                                <input name="email" type="text" ng-model="login.nombre" class="form-control" placeholder="Ingrese su email" required autofocus>
+                                <input name="password" type="password" ng-model="login.contrasenia" class="form-control" placeholder="Contraseña" required>
+                                <button class="btn btn-lg btn-primary btn-block" ng-click="checkLogin()"><i class="fas fa-sign-in-alt"></i> Conectar</button>
                             </form>
 
                     </div><!-- /div:form-group -->
@@ -86,11 +84,11 @@
                     <div class="form-row">
                         <div class="col">
                             <label for="">Nombre</label>
-                            <input ng-model="pedido.nombre" class="form-control" type="" name="nombre">
+                            <input ng-model="pedido.nombre" class="form-control" type="" name="nombre" required>
                         </div>
                         <div class="col">
                             <label for="">Apellido</label>
-                            <input ng-model="pedido.apellido" class="form-control" type="" name="apellido">
+                            <input ng-model="pedido.apellido" class="form-control" type="" name="apellido" required>
                         </div>
                     </div>
                     <div class="form-row">
@@ -100,37 +98,37 @@
                         </div>
                         <div class="col">
                             <label for="">CUIT/CUIL/DNI</label>
-                            <input ng-model="pedido.cuit" class="form-control" type="" name="cuit">
+                            <input ng-model="pedido.cuit" class="form-control" type="" name="cuit" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col">
                             <label for="">Dirección</label>
-                            <input ng-model="pedido.direccion" class="form-control" type="" name="direccion">
+                            <input ng-model="pedido.direccion" class="form-control" type="" name="direccion" required>
                         </div>
                         <div class="col">
                             <label for="">Código postal/Zip </label>
-                            <input ng-model="pedido.cp" class="form-control" type="" name="cp">
+                            <input ng-model="pedido.cp" class="form-control" type="" name="cp" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col">
                             <label for="">Ciudad</label>
-                            <input ng-model="pedido.ciudad" class="form-control" type="" name="ciudad">
+                            <input ng-model="pedido.ciudad" class="form-control" type="" name="ciudad" required>
                         </div>
                         <div class="col">
                             <label for="">Provincia</label>
-                            <input ng-model="pedido.provincia" class="form-control" type="" name="provincia">
+                            <input ng-model="pedido.provincia" class="form-control" type="" name="provincia" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col">
                             <label for="">Pais</label>
-                            <input ng-model="pedido.pais" class="form-control" type="" name="pais">
+                            <input ng-model="pedido.pais" class="form-control" type="" name="pais" required>
                         </div>
                         <div class="col">
                             <label for="">Telefono</label>
-                            <input ng-model="pedido.telefono" class="form-control" type="" name="telefono">
+                            <input ng-model="pedido.telefono" class="form-control" type="" name="telefono"required>
                         </div>
                     </div>
                     <div class="form-check col">
@@ -142,11 +140,19 @@
                     <hr>
                     <div class="form-row float-right">
                         <button
+                            ng-if="!pedido.datDir"
                             ng-click="confirmarPedido()" 
                             data-toggle="collapse" 
                             data-target="#envio" 
                             aria-expanded="true" 
                             class="btn btn-success">Continuar</button>
+                        <button
+                            ng-if="pedido.datDir"
+                            ng-click="actualizarPedido()" 
+                            data-toggle="collapse" 
+                            data-target="#envio" 
+                            aria-expanded="true" 
+                            class="btn btn-success">Actualizar</button>
                     </div>
                     <br>
                 </div>

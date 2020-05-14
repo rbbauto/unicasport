@@ -17,7 +17,7 @@
 							$data['provincia'],
 							$data['pais'],
 							$data['cp'],
-							$data['contrasenia'],
+							md5($data['contrasenia']),
 							$data['checkboxFacturarAca'])) 
 		{
 			return http_response_code(200);
