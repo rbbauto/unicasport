@@ -18,7 +18,7 @@ section{
 	border: 1px solid #ddd !important;
 }
 .excerpt{
-	max-height: 200px;
+	max-height: 300px;
 	overflow: auto;
 }
 .imgProducto{

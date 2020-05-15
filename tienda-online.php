@@ -66,8 +66,7 @@
                                  <span>{{ carrito.total |currency:'$'}}</span> <small>ARS |</small>&nbsp;{{carrito.items}}<small> items</small>
                             </div>
                             <div class="infoCarrito text-left" ng-if="carrito.length > 0">
-                                <h3 class="text-center text-muted">Carrito</h3>
-                                <ul class="list-unstyled">
+                                <ul class="list-unstyled excerpt">
                                     <li class="list-group-item" 
                                         ng-repeat="producto in carrito">
                                         <span><img class="imgInfoCarrito" src="administracion/{{producto.imagen}}"></span>
