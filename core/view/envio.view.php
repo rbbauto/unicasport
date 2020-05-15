@@ -13,7 +13,7 @@
 			    	<div class="row">
 			    		<div class="col-md-2">
 			    			<label>
-			    				<input type="radio" name="optradio" checked>
+			    				<input ng-model="envio" type="radio" value="correo" ng-change="setEnvio()">
 			    			</label>
 			    		</div>
 			    		<div class="col-md-2">
@@ -29,19 +29,19 @@
 			    	<div class="row">
 			    		<div class="col-md-2">
 			    			<label>
-			    				<input type="radio" name="optradio">
+			    				<input ng-model="envio" type="radio" value="noEnvio" ng-change="setEnvio()">
 			    			</label>
 			    		</div>
 			    		<div class="col-md-2">
 			    			<img src="assets/img/default/fabrica.jpg" class="imgInfoCarrito">
 			    		</div>
-			    		<div class="col-md-8">
+			    		<div class="col-md-6">
 			    			Retirar en Fabrica	
 			    		</div>
 			    	</div>
 			    </div>
 			    <div class="float-right">
-			    	<button class="btn btn-success">
+			    	<button class="btn btn-success" ng-click="finalizarCompra()">
 			    		Continuar
 			    	</button>
 			    </div>

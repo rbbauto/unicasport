@@ -25,7 +25,17 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 		return JSON.parse(localStorage.getItem("Pedido")) != null ? JSON.parse(localStorage.getItem("Pedido")) : {};
 	};
 
+	$scope.setEnvio=function(){
+		localStorage.setItem("Envio",JSON.stringify($scope.envio));
+	};
+
+	$scope.getEnvio=function(){
+		return JSON.parse(localStorage.getItem("Envio")) != null ? JSON.parse(localStorage.getItem("Envio")) : {};
+	};
+
 	$scope.login={};
+
+	$scope.envio=$scope.getEnvio();
 
 	$scope.pedido=$scope.getPedido(); // objeto pedido
 
@@ -138,7 +148,7 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 		}).done(function(data) {
 			$scope.pedido=JSON.parse(data);
 			($scope.objectSize($scope.pedido) > 0 ) ? $scope.setPedido() : null;
-			$("#envio").collapse('show')
+			$("#envio").collapse('show');
 			$scope.$apply();
 		}).fail(function() {
     		alert( "Nadie esta registrado con esos datos,por favor registrese con el modo: 'Pedir como invitado he ingrese contraseña para registrar'" );
@@ -154,6 +164,24 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
     		$("#headingTwo").removeClass( "bg-dark");
     		setTimeout(function(){$("#envio").collapse('show');},33);
 		}
+
+		$scope.finalizarCompra=function(){
+			var form={
+				"carrito" : $scope.carrito,
+				"pedido"  : $scope.pedido,
+				"envio"	  : $scope.envio
+			};
+			$.post( "core/controller/submitCart.controller.php", JSON.stringify(form) , function( data ) {
+  				$( "#resultPago" ).html( data );
+  				$("#pago").collapse('show')
+			}).done(function() {
+				$scope.setPedido();    			
+			}).fail(function() {
+	    		alert( "Hubo un error grave, por favor contacte al administrador!" );
+	 		});
+		};
+
+
 	};
 
 	$scope.objectSize = function(obj) {
@@ -170,7 +198,7 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 	};
 
 	$scope.editHide=function(dom){
-		$("#" + dom ).collapse('show');
+		$("#" + dom ).collapse('hide');
 	};
 
 
