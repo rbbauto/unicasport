@@ -13,7 +13,7 @@
 			    	<div class="row">
 			    		<div class="col-md-2">
 			    			<label>
-			    				<input ng-model="envio" type="radio" value="correo" ng-change="setEnvio()">
+			    				<input ng-model="envio" type="radio" value="correo" checked ng-change="setEnvio()">
 			    			</label>
 			    		</div>
 			    		<div class="col-md-2">
@@ -41,7 +41,10 @@
 			    	</div>
 			    </div>
 			    <div class="float-right">
-			    	<button class="btn btn-success" ng-click="finalizarCompra()">
+			    	<button class="btn btn-success"
+			    			data-toggle="collapse" 
+                            data-target="#pago" 
+                            aria-expanded="true">
 			    		Continuar
 			    	</button>
 			    </div>

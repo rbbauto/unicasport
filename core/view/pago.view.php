@@ -8,6 +8,7 @@
         </div>
         <div id="pago" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
             <div class="card-body">
+                <button ng-click="finalizarCompra()" class="btn btn-info">Tarjeta/Mercado Pago</button>
             	<div class="col-md-12" id="resultPago">
             		
             	</div>   
