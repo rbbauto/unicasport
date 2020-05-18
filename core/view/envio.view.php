@@ -17,10 +17,13 @@
 			    			</label>
 			    		</div>
 			    		<div class="col-md-2">
-			    			<img src="assets/img/default/correo.png" class="imgInfoCarrito">
+			    			<img src="assets/img/default/MercadoEnvio.jpg" class="imgInfoCarrito">
 			    		</div>
 			    		<div class="col-md-8">
-			    			Correo Argentino <i>(Mercado Envios)</i>	
+			    			<p ng-if="pedido.costoEnvio != undefined">
+			    				$<input class="col-xs-2 no-border" size="9" type="text" ng-model="pedido.costoEnvio"ng-readonly="true">
+			    			</p>
+			    			<p><i>(Mercado Envios) </i><strong class="text-success" id="estimatedSend"></strong></p>
 			    		</div>
 			    	</div>
 			    </div>

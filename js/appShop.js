@@ -2,6 +2,8 @@ var app	=	angular.module('appShop',[]);
 
 var Debug; // global
 
+var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo","Junio","Julio","Agosto", "Septiembre","Noviembre","Diciembre"];
+
 app.controller('carrito', ['$scope','$http', function($scope,$http){
 
 	// variable para debugear en consola
@@ -27,6 +29,7 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 
 	$scope.setEnvio=function(){
 		localStorage.setItem("Envio",JSON.stringify($scope.envio));
+		
 	};
 
 	$scope.getEnvio=function(){
@@ -107,7 +110,7 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 		}).done(function() {
     		window.location.replace("pedido.php")	
 		}).fail(function() {
-    		alert( "Hubo un error grave, por favor contacte al administrador!" );
+    		alert( "Codigo posta invalido, por favor reviselo!" );
  		});
 	};
 
@@ -184,6 +187,21 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 
 	};
 
+	$scope.getCost=function(){
+			
+			$.get( "https://api.mercadolibre.com/sites/MLA/shipping_options?zip_code_from=1744&zip_code_to=" + $scope.pedido.cp +"&dimensions=16x16x16,1500",  function( data ) {
+  			}).done(function(data) {
+				$scope.pedido.costoEnvio=data.options[0].cost;
+				$scope.$apply();
+				var fecha= new Date(data.options[0].estimated_delivery_time.date);
+				var mes= meses[fecha.getMonth()];
+				var dia= fecha.getDate();
+				$("#estimatedSend").html("llega el " + dia + " de " + mes);  			
+			}).fail(function() {
+	    		console.log( "Hubo un error grave, por favor contacte al administrador!" );
+	 		});
+	};
+
 	$scope.objectSize = function(obj) {
     	var size = 0, key;
     	for (key in obj) 
@@ -207,6 +225,7 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 	// listener para modificar en local el total
 	setTimeout(function(){
 		$scope.checkPedido();
+		$scope.getCost();
 		$('.carrito_total').on('DOMSubtreeModified',function(){
 			localStorage.setItem("Total",JSON.stringify(Number($(this).html().replace(",",""))));
 		});

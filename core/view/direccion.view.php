@@ -38,7 +38,7 @@
                         </div>
                         <div class="col">
                             <label for="">Código postal/Zip </label>
-                            <input ng-model="pedido.cp" class="form-control" type="" name="cp" required>
+                            <input ng-blur="getCost()" ng-model="pedido.cp" class="form-control" type="" name="cp" required>
                         </div>
                     </div>
                     <div class="form-row">

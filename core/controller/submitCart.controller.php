@@ -37,7 +37,7 @@
 		  );
 		  $payer->identification = array(
 		    "type" => "DNI",
-		    "number" => "12345678"
+		    "number" => $data['pedido']['cuit']
 		  );
 		  $payer->address = array(
 		    "street_name" => $data['pedido']['direccion'],
@@ -57,13 +57,13 @@
 
 		//Dados do Frete
 		$shipments = new MercadoPago\ Shipments();
-		$shipments->cost = 420.23;
+		$shipments->cost = $data['pedido']['costoEnvio'];
 		$shipments->receiver_address = array(
-			"zip_code" => "4247",
+			"zip_code" => $data['pedido']['cp'],
 			"street_number" => 1552,
-			"street_name" => "Saraiva Travessa",
-			"floor" => 6,
-			"apartment" => "C"
+			"street_name" => $data['pedido']['direccion'],
+			"floor" => 0,
+			"apartment" => ""
 		);
 
 		$preference->payment_methods = array(
