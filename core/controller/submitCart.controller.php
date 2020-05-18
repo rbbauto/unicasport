@@ -84,7 +84,8 @@
 	}
 	 
  ?>
-<div class="form-row float-right">
-	<a class="btn btn-info"href="<?php echo $preference->init_point; ?>">Pagar</a>
-</div>
-<pre><?php var_dump($preference); ?></pre>
+	<div class="float-right">
+		<a class="btn btn-info"href="<?php echo $preference->init_point; ?>">Pagar</a> con Mercado Pago
+	</div>
+	
+

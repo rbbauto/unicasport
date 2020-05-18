@@ -9,11 +9,19 @@
         <div id="pago" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
             <div class="card-body">
                 <button ng-click="finalizarCompra()" class="btn btn-info">Tarjeta/Mercado Pago</button>
-            	<div class="col-md-12" id="resultPago">
-            		
-            	</div>   
+                <hr>
+                <p><i class="text-muted">Articulo/s:</i> {{ getCantItemsCart()}}</p>
+                <p>
+                    <i class="text-muted">Subtotal:</i> {{ getTotal() |currency:'$'}}ARS
+                <strong id="resultPago">
+                    
+                </strong>
+                </p>
+                <p><i class="text-muted">Envio: </i> {{ pedido.costoEnvio |currency:'$'}}ARS</p>
+                <p><i class="text-muted">Total: </i> {{ (getTotal() + pedido.costoEnvio) |currency:'$'}}ARS</p>
+
             </div>
             
-        </div>
+        </div> <!-- /id=pago-->
     
 </div>
