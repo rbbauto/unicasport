@@ -30,7 +30,7 @@
                         <hr>
                     </div>
                     <h3 class="cursor col-md-12 text-center alert alert-secondary">Transferencia Bancaria</h3>
-                    <h4 class="showMethod">transferencia pagar aqui</h4>
+                    <h4 class="showMethod">en construcción</h4>
                 </div>
             </div>
             

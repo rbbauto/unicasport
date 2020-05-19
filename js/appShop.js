@@ -193,13 +193,18 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 			$.get( "https://api.mercadolibre.com/sites/MLA/shipping_options?zip_code_from=1744&zip_code_to=" + $scope.pedido.cp +"&dimensions=16x16x16,1500",  function( data ) {
   			}).done(function(data) {
 				$scope.pedido.costoEnvio=data.options[0].cost;
+				$scope.pedido.pais=data.destination.country.name;
+				$scope.pedido.provincia=data.destination.state.name;
 				$scope.$apply();
 				var fecha= new Date(data.options[0].estimated_delivery_time.date);
 				var mes= meses[fecha.getMonth()];
 				var dia= fecha.getDate();
 				$("#estimatedSend").html("llega el " + dia + " de " + mes);  			
 			}).fail(function() {
-	    		console.log( "Hubo un error grave, por favor contacte al administrador!" );
+				if ($scope.objectSize($scope.pedido) > 8) {
+					alert( "Hubo un error, el codigo postal proporcionado es invalido!\n\n por favor reviselo!" );	
+				}
+	    		
 	 		});
 	};
 

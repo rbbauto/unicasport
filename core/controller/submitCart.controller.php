@@ -19,7 +19,7 @@
            		"title"			=>	$producto['nombre'],
                 "quantity"		=>	$producto['cantidad'],
                 "currency_id"	=>	"ARS",
-                "unit_price"	=>	intval($producto['precio']),
+                "unit_price"	=>	$producto['precio'],
                 "id"			=>	$producto['id'],
                 "description"	=>	$producto['descripcion'],
                 "picture_url"	=>	$producto['imagen']);
@@ -42,7 +42,7 @@
 		  $payer->address = array(
 		    "street_name" => $data['pedido']['direccion'],
 		    "street_number" => 1236,
-		    "zip_code" => "86084"
+		    "zip_code" => $data['pedido']['cp']
 		  );
 		  // ...
 

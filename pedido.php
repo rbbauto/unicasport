@@ -72,26 +72,40 @@ session_start();
                         <br/>
                         <div class="col-md-12 bg-ligth rounded"> 
                             <div class="">
-                               {{ getCantItemsCart()}} Articulos 
+                               {{ getCantItemsCart()}} Articulos  
+                                <small><a onclick="$('#detalle').fadeToggle()" href="">Mostrar Detalle</a></small>
                             </div><!-- /div:infoHeader-->
-                            <span>{{ getTotal() |currency:'$'}}</span><small> ARS</small> | 
-                            <small>Mostrar Detalle</small>
+                             
+                           
+                            <div id="detalle" class="infoCarrito col-md-12 text-left" ng-if="carrito.length > 0">
+                                <ul class="list-unstyled">
+                                    <li class="list-group-item" 
+                                        ng-repeat="producto in carrito">
+                                        <span><img class="imgInfoCarrito" src="administracion/{{producto.imagen}}"></span>
+                                        <span class="text-muted">{{producto.nombre}} </span>
+                                        <span> ${{producto.precio}}<small>ARS</small></span>
+                                        </li>
+                                </ul>
+                            </div><!-- / div:infoCarrito text-left-->
                          </div><!-- /div:col-md-12-->
                          <hr/>
                         <div class="col-md-12">
                             <h5 class="text-muted text-center">Resumen de Compra</h5>
                         </div><!-- /div:col-md-12-->
 
-                        <div class="float-left">
-                            <p> {{ getCantItemsCart() }}<small> Articulo/s por un total de </small></p>
-                        </div><!-- /div:float-left-->
-                        <div class="float-right">
-                             <p class="text-muted"><small>{{ getTotal() |currency:'$' }} ARS</small></p>
+                        <div class="col-md-12 alert">
+                             <strong class="text-muted">    
+                                    {{ getCantItemsCart() }} Articulo/s por un total de
+                            </strong> {{ getTotal() |currency:'$' }} ARS
                         </div><!-- /div:float-right-->
                         <div class="col-md-12" style="clear:both;">
+                            
+                            <div class="alert">
+                            <strong class="text-muted">Sub-total (impuestos inc.)</strong> {{ getTotal() |currency:'$'}} ARS</div>
                             <hr>
-                            <div class="float-left">Total (impuestos inc.)</div>
-                            <div class="float-right">{{ getTotal() |currency:'$'}} ARS</div>
+                            <div class="alert">
+                                <strong class="text-muted">Total con envio </strong> {{ (getTotal() + pedido.costoEnvio) |currency:'$'}} ARS
+                            </div>
                         </div><!-- /div:col-md-12-->
 
                     </div><!-- /div:col-md-4-->

@@ -37,6 +37,10 @@
                             <input ng-model="pedido.direccion" class="form-control" type="" name="direccion" required>
                         </div>
                         <div class="col">
+                            <label for="">Numero</label>
+                            <input  ng-model="pedido.numero" class="form-control" type="" name="numero" required>
+                        </div>
+                        <div class="col">
                             <label for="">Código postal/Zip </label>
                             <input ng-blur="getCost()" ng-model="pedido.cp" class="form-control" type="" name="cp" required>
                         </div>

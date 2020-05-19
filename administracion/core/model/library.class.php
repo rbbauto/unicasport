@@ -157,7 +157,7 @@ class Crud{
         }
     }
 
-    public function setCliente($nombre,$apellido,$email,$telefono,$empresa,$cuit,$direccion,$ciudad,$provincia,$pais,$cp,$pass,$isFactDir)
+    public function setCliente($nombre,$apellido,$email,$telefono,$empresa,$cuit,$direccion,$numero,$ciudad,$provincia,$pais,$cp,$pass,$isFactDir)
     {   
         $host= gethostname();
         $query = $this->db->prepare("INSERT INTO 
@@ -168,6 +168,7 @@ class Crud{
                                                 apellido,
                                                 telefono,
                                                 direccion,
+                                                numero,
                                                 ciudad,
                                                 provincia,
                                                 pais,
@@ -182,6 +183,7 @@ class Crud{
                                                     :apellido,
                                                     :telefono,
                                                     :direccion,
+                                                    :numero,
                                                     :ciudad,
                                                     :provincia,
                                                     :pais,
@@ -196,6 +198,7 @@ class Crud{
         $query->bindParam("apellido", $apellido, PDO::PARAM_STR);
         $query->bindParam("telefono", $telefono, PDO::PARAM_STR);
         $query->bindParam("direccion", $direccion, PDO::PARAM_STR);
+        $query->bindParam("numero", $numero, PDO::PARAM_STR);
         $query->bindParam("ciudad", $ciudad, PDO::PARAM_STR);
         $query->bindParam("provincia", $provincia, PDO::PARAM_STR);
         $query->bindParam("pais", $pais, PDO::PARAM_STR);
@@ -221,7 +224,7 @@ class Crud{
 
     public function delPedido($email)
     {
-        $query = $this->db->prepare("DELETE FROM logincliente WHERE username = '$email'");
+        $query = $this->db->prepare("DELETE FROM logincliente WHERE email = '$email'");
         if ($query->execute()) 
         {
             return true;
