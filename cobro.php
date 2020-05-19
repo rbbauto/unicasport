@@ -59,20 +59,40 @@
         </header>
 
         <section class="page-section  bg-light">
-        	<div class="container-fluid">
+        	<div class="container text-center">
 	            <div class="row">
 	               
+	                <div class="col-md-12">
+                        <?php if($aprovado){ ?>
+                        <h1 class="alert alert-success">
+                           <i class="fas fa-check"></i> pago completo
+                       </h1>
+                        <?php }else{ ?>
+                        <h1 class="alert alert-danger">Pago Rechazado</h1>
+                        <?php } ?>
+                    
+                        <h2>Informacion de compra:</h2>
+                    </div><!-- / div:col-md-12-->
 	                
-	                	<div class="col-md-4">
-	                		<?php if($aprovado){ ?>
-	                		<h1 class="alert alert-success">
-                				pago completo
-	                		</h1>
-	                		<?php }else{ ?>
-	                			<h1 class="alert alert-danger">Pago Rechazado</h1>
-	                		<?php } ?>
-	                	</div>
-	                
+	                	
+                    <div class="col-md-12 text-left">
+                        <p>Cantidad de articulos {{ getCantItemsCart()}} <a href="" onclick="$('#detalle').fadeToggle()">ver detalle</a></p>
+                        <p>Por un total de {{getTotal() |currency:'$'}}ARS</p>
+                        <p>Costo de envio {{ pedido.costoEnvio |currency:'$'}}ARS</p>
+                        <p>Total con envio {{ (getTotal() + pedido.costoEnvio) |currency:'$'}}ARS</p>
+                    </div><!-- / div:col-md-12-->
+	                <div class="col-md-12">
+                        <div id="detalle" class="col-md-6 text-left" ng-if="carrito.length > 0">
+                                <ul class="list-unstyled">
+                                    <li class="list-group-item" 
+                                        ng-repeat="producto in carrito">
+                                        <span><img class="imgInfoCarrito" src="administracion/{{producto.imagen}}"></span>
+                                        <span class="text-muted">{{producto.nombre}} </span>
+                                        <span> ${{producto.precio}}<small>ARS</small></span>
+                                        </li>
+                                </ul>
+                        </div><!-- / div:infoCarrito text-left-->
+                    </div><!-- / div:col-md-12-->
 	            </div> <!-- /div:row-->
         	</div> <!-- /div:container-fluid-->	
         </section>

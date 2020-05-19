@@ -8,20 +8,32 @@
         </div>
         <div id="pago" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
             <div class="card-body">
-                <button ng-click="finalizarCompra()" class="btn btn-info">Tarjeta/Mercado Pago</button>
-                <hr>
-                <p><i class="text-muted">Articulo/s:</i> {{ getCantItemsCart()}}</p>
+                <p>
+                    <i class="text-muted">Articulo/s:</i> {{ getCantItemsCart()}}
+                </p>
                 <p>
                     <i class="text-muted">Subtotal:</i> {{ getTotal() |currency:'$'}}ARS
-                <strong id="resultPago">
-                    
-                </strong>
                 </p>
-                <p><i class="text-muted">Envio: </i> {{ pedido.costoEnvio |currency:'$'}}ARS</p>
-                <p><i class="text-muted">Total: </i> {{ (getTotal() + pedido.costoEnvio) |currency:'$'}}ARS</p>
+                <p>
+                    <i class="text-muted">Envio: </i> {{ pedido.costoEnvio |currency:'$'}}ARS
+                </p>
+                <p>
+                    <i class="text-muted">Total: </i> {{ (getTotal() + pedido.costoEnvio) |currency:'$'}}ARS
+                </p>
 
+                <div id="metodosPago">
+                    <h3 class="cursor col-md-12 text-center alert alert-secondary">Tarjeta / Mercado Pago</h3>
+                    <div  class="showMethod">
+                        <button ng-click="finalizarCompra()" class="btn btn-info">Procesar Pago</button>
+                        <hr>
+                        <strong id="resultPago"></strong>
+                        <hr>
+                    </div>
+                    <h3 class="cursor col-md-12 text-center alert alert-secondary">Transferencia Bancaria</h3>
+                    <h4 class="showMethod">transferencia pagar aqui</h4>
+                </div>
             </div>
             
         </div> <!-- /id=pago-->
     
-</div>
+</div> 

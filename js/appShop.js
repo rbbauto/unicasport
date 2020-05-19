@@ -174,6 +174,7 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 				"pedido"  : $scope.pedido,
 				"envio"	  : $scope.envio
 			};
+			$("#resultPago").html('Procesando <img src="administracion/assets/imgDefault/loading.gif" width="100">');
 			$.post( "core/controller/submitCart.controller.php", JSON.stringify(form) , function( data ) {
   				$( "#resultPago" ).html( data );
   				$("#pago").collapse('show')
@@ -229,7 +230,7 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 		$('.carrito_total').on('DOMSubtreeModified',function(){
 			localStorage.setItem("Total",JSON.stringify(Number($(this).html().replace(",",""))));
 		});
-	},1000);
+	},300);
 	
 
 }]); // _/controller
@@ -251,6 +252,15 @@ $("#show_password").on("click",function(){
   } else {
     x.type = "password";
   }
+});
+
+	$(document).ready(function(){
+		if ($('#detalle').length > 0) {$('#detalle').hide();}
+		$(".showMethod").hide();
+		$("#metodosPago h3").on("click",function(){
+		$(this).next().fadeToggle();
+	});
+
 });
 
 

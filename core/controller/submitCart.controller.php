@@ -49,9 +49,9 @@
 		// Crea un objeto de preferencia
 		$preference = new MercadoPago\Preference();
 		$preference->back_urls = array(
-		    "success" => "localhost/unicasport?estado=1",
-		    "failure" => "localhost/unicasport?estado=0",
-		    "pending" => "localhost/unicasport?estado=2"
+		    "success" => "localhost/unicasport/cobro.php?checkout=go",
+		    "failure" => "localhost/unicasport/cobro.php?checkout=stp",
+		    "pending" => "localhost/unicasport/cobro.php?checkout=std"
 		);
 		
 
@@ -84,8 +84,6 @@
 	}
 	 
  ?>
-	<div class="float-right">
-		<a class="btn btn-info"href="<?php echo $preference->init_point; ?>">Pagar</a> con Mercado Pago
-	</div>
+	<a class="btn btn-success"href="<?php echo $preference->init_point; ?>">Pagar</a> con Mercado Pago
 	
 
