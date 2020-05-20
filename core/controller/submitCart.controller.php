@@ -41,7 +41,7 @@
 		  );
 		  $payer->address = array(
 		    "street_name" => $data['pedido']['direccion'],
-		    "street_number" => 1236,
+		    "street_number" => $data['pedido']['numero'],
 		    "zip_code" => $data['pedido']['cp']
 		  );
 		  // ...
@@ -55,16 +55,20 @@
 		);
 		
 
-		//Dados do Frete
-		$shipments = new MercadoPago\ Shipments();
-		$shipments->cost = $data['pedido']['costoEnvio'];
-		$shipments->receiver_address = array(
-			"zip_code" => $data['pedido']['cp'],
-			"street_number" => 1552,
-			"street_name" => $data['pedido']['direccion'],
-			"floor" => 0,
-			"apartment" => ""
-		);
+		if ($data['envio'] == "correo") 
+		{
+			//Dados do Frete
+			$shipments = new MercadoPago\ Shipments();
+			$shipments->cost = $data['pedido']['costoEnvio'];
+			$shipments->receiver_address = array(
+				"zip_code" => $data['pedido']['cp'],
+				"street_number" => $data['pedido']['numero'], 
+				"street_name" => $data['pedido']['direccion'],
+				"floor" => 0,
+				"apartment" => ""
+			);	# code...
+		}
+		
 
 		$preference->payment_methods = array(
 		    "excluded_payment_types" => array(
@@ -76,9 +80,9 @@
 		$preference->external_reference = gethostname();
 		$preference->auto_return = "approved";
 		$preference->binary_mode = true;
-		 $preference->payer = $payer; 
+		$preference->payer = $payer; 
 		$preference->items = $items;
-		$preference->shipments= $shipments;
+		if ($data['envio'] == "correo") $preference->shipments= $shipments;
 		$preference->save();
 		
 	}

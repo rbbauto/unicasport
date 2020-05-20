@@ -11,14 +11,17 @@
                 <p>
                     <i class="text-muted">Articulo/s:</i> {{ getCantItemsCart()}}
                 </p>
-                <p>
+                <p ng-if="envio == 'correo'">
                     <i class="text-muted">Subtotal:</i> {{ getTotal() |currency:'$'}}ARS
                 </p>
-                <p>
+                <p ng-if="envio == 'correo'">
                     <i class="text-muted">Envio: </i> {{ pedido.costoEnvio |currency:'$'}}ARS
                 </p>
-                <p>
+                <p ng-if="envio == 'correo'">
                     <i class="text-muted">Total: </i> {{ (getTotal() + pedido.costoEnvio) |currency:'$'}}ARS
+                </p>
+                <p ng-if="envio == 'noEnvio'">
+                    <i class="text-muted">Total: </i> {{ getTotal() |currency:'$'}}ARS
                 </p>
 
                 <div id="metodosPago">

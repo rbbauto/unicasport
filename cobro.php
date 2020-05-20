@@ -56,6 +56,7 @@
         <!-- /Navigation-->
         <div class="se-pre-con"></div>
         <header class="headerCustom">
+            <br>
         </header>
 
         <section class="page-section  bg-light">
@@ -89,6 +90,7 @@
                                         <span><img class="imgInfoCarrito" src="administracion/{{producto.imagen}}"></span>
                                         <span class="text-muted">{{producto.nombre}} </span>
                                         <span> ${{producto.precio}}<small>ARS</small></span>
+                                        <small class="text-danger"> Cantidad:( x{{ producto.cantidad}} )</small>
                                         </li>
                                 </ul>
                         </div><!-- / div:infoCarrito text-left-->
