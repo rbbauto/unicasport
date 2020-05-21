@@ -72,8 +72,8 @@ session_start();
                         <br/>
                         <div class="col-md-12 bg-ligth rounded"> 
                             <div class="">
-                               {{ getCantItemsCart()}} Articulos  
-                                <small><a onclick="$('#detalle').fadeToggle()" href="">Mostrar Detalle</a></small>
+                               {{ getCantItemsCart()}} <strong class="text-muted"> Articulos </strong> 
+                                <small ng-if="carrito.length > 0"><a onclick="$('#detalle').fadeToggle()" href="">Mostrar Detalle</a></small>
                             </div><!-- /div:infoHeader-->
                              
                            
@@ -90,16 +90,16 @@ session_start();
                             </div><!-- / div:infoCarrito text-left-->
                          </div><!-- /div:col-md-12-->
                          <hr/>
-                        <div class="col-md-12">
+                        <div ng-if="carrito.length > 0" class="col-md-12">
                             <h5 class="text-muted text-center">Resumen de Compra</h5>
                         </div><!-- /div:col-md-12-->
 
-                        <div class="col-md-12 alert">
+                        <div ng-if="carrito.length > 0" class="col-md-12 alert">
                              <strong class="text-muted">    
                                     {{ getCantItemsCart() }} Articulo/s por un total de
                             </strong> {{ getTotal() |currency:'$' }} <small>ARS</small>
                         </div><!-- /div:float-right-->
-                        <div class="col-md-12" style="clear:both;">
+                        <div ng-if="carrito.length > 0" class="col-md-12" style="clear:both;">
                             
                             <div class="alert">
                             <strong class="text-muted">Sub-total (impuestos inc.)</strong> {{ getTotal() |currency:'$'}} <small>ARS</small></div>

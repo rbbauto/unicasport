@@ -15,5 +15,10 @@
     <?php  require_once"core/view/pago.view.php"; ?>
     <!-- /Card Direccion -->
 
+    <div class="col-md-12 text-center" ng-if="carrito.length < 1">
+        <hr>
+        <h1 class="col-md-12 text-center">Carrito Vacio!</h1>
+        <a href="tienda-online.php" class="link">Ir a la tienda Online!</a>
+    </div>
     
 </div>

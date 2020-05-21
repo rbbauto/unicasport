@@ -11,7 +11,7 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 
 	// metodo que devuelve el carrito almacenado en memoria local
 	$scope.storage= function(){
-		return JSON.parse(localStorage.getItem("Items")) != null ? JSON.parse(localStorage.getItem("Items")) : "";
+		return JSON.parse(localStorage.getItem("Items")) != null ? JSON.parse(localStorage.getItem("Items")) : [];
 	};
 
 	// metodo que devuelve el total almacenado en memoria local
@@ -28,6 +28,8 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 	};
 
 	$scope.setEnvio=function(){
+		$scope.envio=this.envio;
+		$( "#resultPago" ).html('');
 		localStorage.setItem("Envio",JSON.stringify($scope.envio));
 		
 	};
@@ -154,10 +156,11 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 		}).done(function(data) {
 			$scope.pedido=JSON.parse(data);
 			($scope.objectSize($scope.pedido) > 0 ) ? $scope.setPedido() : null;
-			$("#envio").collapse('show');
+			($scope.carrito.length > 0) ? $("#envio").collapse('show') : $("#direccion").collapse('show') ;
 			$scope.pedido.datDir=true;
 			$scope.getCost();
 			$scope.$apply();
+
 		}).fail(function() {
     		alert( "Nadie esta registrado con esos datos,por favor registrese con el modo: 'Pedir como invitado he ingrese contraseña para registrar'" );
  		});
@@ -174,6 +177,11 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 		}
 
 		$scope.finalizarCompra=function(){
+			if ($scope.envio == "") {
+				alert("Por favor elija una forma de envio\n En el formulario de envio");
+				$("#envio").collapse('show');
+				return;
+			}
 			var form={
 				"carrito" : $scope.carrito,
 				"pedido"  : $scope.pedido,

@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" ng-if="carrito.length > 0">
    	<div class="card-header bg-dark bg-custom" id="headingThree">
         <a class="menu_links text-muted">
         <h3 class="col-md-12" data-toggle="collapse" data-target="#envio" aria-expanded="true" aria-controls=" collapseOne">
@@ -13,7 +13,7 @@
 			    	<div class="row">
 			    		<div class="col-md-2">
 			    			<label>
-			    				<input ng-model="envio" type="radio" value="correo" checked ng-change="setEnvio()">
+			    				<input ng-model="envio" type="radio" value="correo" ng-change="setEnvio()">
 			    			</label>
 			    		</div>
 			    		<div class="col-md-2">

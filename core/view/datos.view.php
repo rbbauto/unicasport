@@ -33,24 +33,27 @@
                         <input ng-model="pedido.email" type="email" name="email" class="form-control" required>
                         <hr>
 
-                        <div ng-if="objectSize(pedido) <= 4">
+                        <div class="alert alert-primary">
+                            <div ng-if="objectSize(pedido) <= 4">
                             <strong>Cree una cuenta</strong><i>(opcional)</i>
                             <p class="text-muted">¡Y ahorre tiempo en su próximo pedido!</p>
-                        </div>
-
-                        <div ng-if="objectSize(pedido) >= 12">
-                            <strong>Cambie su contraseña</strong><i>(si asi lo prefiere)</i>
-                            <p class="text-muted">¡si cambia su contraseña memorizela bien o gurdela en un lugar seguro!</p>
-                        </div>
-
-                        <label for="password">Contraseña</label>
-                        <div class="input-group">
-                            <input  ng-model="pedido.contrasenia" type="password" id="pass" name="password" class="form-control">
-                            <div class="input-group-append">
-                                <button id="show_password" class="btn btn-primary" type="button">
-                                    <span class="fa fa-eye-slash icon"></span>
-                                </button>
                             </div>
+
+                            <div ng-if="objectSize(pedido) >= 12">
+                                <strong>Cambie su contraseña</strong><i>(si asi lo prefiere)</i>
+                                <p class="text-muted">¡si cambia su contraseña memorizela bien o guardela en un lugar seguro!</p>
+                            </div>
+
+                            <label for="password">Contraseña</label>
+                            <div class="input-group">
+                                <input  ng-model="pedido.contrasenia" type="password" id="pass" name="password" class="form-control">
+                                <div class="input-group-append">
+                                    <button id="show_password" class="btn btn-primary" type="button">
+                                        <span class="fa fa-eye-slash icon"></span>
+                                    </button>
+                                </div>
+                        </div><!-- /div -->
+                        
                         </div>
                         <hr>
                         <div class="form-row float-right">

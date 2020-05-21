@@ -96,12 +96,12 @@
         <!-- Productos-->
         <section  class="page-section  bg-light">
 
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row">
                     <div ng-repeat="producto in productos |filter:buscarProductos" class="col-sm-3" id="{{$index}}">
 
                         <div class="card">
-                            <img class="card-img-top imgProducto" src="administracion/{{producto.imagen}}"
+                            <img class="card-img-top img-fluid" src="administracion/{{producto.imagen}}"
                              alt="Card image cap"
                              data-placement="bottom"
                                     data-toggle="tooltip" 
