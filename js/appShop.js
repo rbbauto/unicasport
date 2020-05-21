@@ -134,7 +134,10 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 	};
 
 	$scope.actualizarPedido=function(){
-		
+		if (!$scope.pedido.contrasenia.length > 0) {
+			alert("Falta llenar el campo contraseña\nrevise la solapa Editar Informacion");
+			return;
+		}
 		$.post( "core/controller/updateCart.controller.php", JSON.stringify($scope.pedido) , function( data ) {
   			//$( ".result" ).html( data );
 		}).done(function() {
@@ -152,6 +155,8 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 			$scope.pedido=JSON.parse(data);
 			($scope.objectSize($scope.pedido) > 0 ) ? $scope.setPedido() : null;
 			$("#envio").collapse('show');
+			$scope.pedido.datDir=true;
+			$scope.getCost();
 			$scope.$apply();
 		}).fail(function() {
     		alert( "Nadie esta registrado con esos datos,por favor registrese con el modo: 'Pedir como invitado he ingrese contraseña para registrar'" );

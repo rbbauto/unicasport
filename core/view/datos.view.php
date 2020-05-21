@@ -13,7 +13,10 @@
             <div class="card-body">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Pedir como invitado</a>
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
+                        <strong ng-if="objectSize(pedido) <= 4">Pedir como invitado</strong>
+                        <strong class="text-info" ng-if="objectSize(pedido) >= 12">Editar informacion</strong>
+                    </a>
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Iniciar sesion</a>
                     </div><!-- /div:nav nav-tabs -->
                 </nav>
@@ -29,8 +32,17 @@
                         <label for="email">Direccion de correo electronico</label>
                         <input ng-model="pedido.email" type="email" name="email" class="form-control" required>
                         <hr>
-                        <strong>Cree una cuenta</strong><i>(opcional)</i>
-                        <p class="text-muted">¡Y ahorre tiempo en su próximo pedido!</p>
+
+                        <div ng-if="objectSize(pedido) <= 4">
+                            <strong>Cree una cuenta</strong><i>(opcional)</i>
+                            <p class="text-muted">¡Y ahorre tiempo en su próximo pedido!</p>
+                        </div>
+
+                        <div ng-if="objectSize(pedido) >= 12">
+                            <strong>Cambie su contraseña</strong><i>(si asi lo prefiere)</i>
+                            <p class="text-muted">¡si cambia su contraseña memorizela bien o gurdela en un lugar seguro!</p>
+                        </div>
+
                         <label for="password">Contraseña</label>
                         <div class="input-group">
                             <input  ng-model="pedido.contrasenia" type="password" id="pass" name="password" class="form-control">

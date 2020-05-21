@@ -163,7 +163,7 @@ class Crud{
         $query = $this->db->prepare("INSERT INTO 
                                     logincliente(id,
                                                 email,
-                                                password,
+                                                contrasenia,
                                                 nombre,
                                                 apellido,
                                                 telefono,
@@ -178,7 +178,7 @@ class Crud{
                                                 checkboxFacturarAca,
                                                 hostname)
                                     VALUES (null,   :email,
-                                                    :password,
+                                                    :contrasenia,
                                                     :nombre,
                                                     :apellido,
                                                     :telefono,
@@ -193,7 +193,7 @@ class Crud{
                                                     :checkboxFacturarAca,
                                                     :hostname)");
         $query->bindParam("email", $email, PDO::PARAM_STR);
-        $query->bindParam("password", $pass, PDO::PARAM_STR);
+        $query->bindParam("contrasenia", $pass, PDO::PARAM_STR);
         $query->bindParam("nombre", $nombre, PDO::PARAM_STR);
         $query->bindParam("apellido", $apellido, PDO::PARAM_STR);
         $query->bindParam("telefono", $telefono, PDO::PARAM_STR);
@@ -215,11 +215,126 @@ class Crud{
         }else{
             return false;
         }
+    }
 
-   
-
-   
-
+    public function updateCliente($nombre,$apellido,$email,$telefono,$empresa,$cuit,$direccion,$numero,$ciudad,$provincia,$pais,$cp,$pass,$isFactDir)
+    {   
+        var_dump(empty($pass));
+        $host= gethostname();
+        if (strlen($pass) > 0 ) { 
+            $query = $this->db->prepare("INSERT INTO 
+                                    logincliente(id,
+                                                email,
+                                                contrasenia,
+                                                nombre,
+                                                apellido,
+                                                telefono,
+                                                direccion,
+                                                numero,
+                                                ciudad,
+                                                provincia,
+                                                pais,
+                                                empresa,
+                                                cuit,
+                                                cp,
+                                                checkboxFacturarAca,
+                                                hostname)
+                                    VALUES (null,   :email,
+                                                    :contrasenia,
+                                                    :nombre,
+                                                    :apellido,
+                                                    :telefono,
+                                                    :direccion,
+                                                    :numero,
+                                                    :ciudad,
+                                                    :provincia,
+                                                    :pais,
+                                                    :empresa,
+                                                    :cuit,
+                                                    :cp,
+                                                    :checkboxFacturarAca,
+                                                        :hostname)");
+            $query->bindParam("email", $email, PDO::PARAM_STR);
+            $query->bindParam("contrasenia", md5($pass), PDO::PARAM_STR);
+            $query->bindParam("nombre", $nombre, PDO::PARAM_STR);
+            $query->bindParam("apellido", $apellido, PDO::PARAM_STR);
+            $query->bindParam("telefono", $telefono, PDO::PARAM_STR);
+            $query->bindParam("direccion", $direccion, PDO::PARAM_STR);
+            $query->bindParam("numero", $numero, PDO::PARAM_STR);
+            $query->bindParam("ciudad", $ciudad, PDO::PARAM_STR);
+            $query->bindParam("provincia", $provincia, PDO::PARAM_STR);
+            $query->bindParam("pais", $pais, PDO::PARAM_STR);
+            $query->bindParam("empresa", $empresa, PDO::PARAM_STR);
+            $query->bindParam("cuit", $cuit, PDO::PARAM_STR);
+            $query->bindParam("cp", $cp, PDO::PARAM_STR);
+            $query->bindParam("checkboxFacturarAca", $isFactDir, PDO::PARAM_STR);
+            $query->bindParam("hostname",$host, PDO::PARAM_STR);
+            
+            
+            if ($query->execute()) 
+            {
+                return true;
+            }else{
+                return false;
+            }
+        }// end if (strlen($pass) > 0 )
+        else
+        {
+            $query = $this->db->prepare("INSERT INTO 
+                                    logincliente(id,
+                                                email,
+                                                nombre,
+                                                apellido,
+                                                telefono,
+                                                direccion,
+                                                numero,
+                                                ciudad,
+                                                provincia,
+                                                pais,
+                                                empresa,
+                                                cuit,
+                                                cp,
+                                                checkboxFacturarAca,
+                                                hostname)
+                                    VALUES (null,   :email,
+                                                    :nombre,
+                                                    :apellido,
+                                                    :telefono,
+                                                    :direccion,
+                                                    :numero,
+                                                    :ciudad,
+                                                    :provincia,
+                                                    :pais,
+                                                    :empresa,
+                                                    :cuit,
+                                                    :cp,
+                                                    :checkboxFacturarAca,
+                                                        :hostname)");
+            $query->bindParam("email", $email, PDO::PARAM_STR);
+            $query->bindParam("nombre", $nombre, PDO::PARAM_STR);
+            $query->bindParam("apellido", $apellido, PDO::PARAM_STR);
+            $query->bindParam("telefono", $telefono, PDO::PARAM_STR);
+            $query->bindParam("direccion", $direccion, PDO::PARAM_STR);
+            $query->bindParam("numero", $numero, PDO::PARAM_STR);
+            $query->bindParam("ciudad", $ciudad, PDO::PARAM_STR);
+            $query->bindParam("provincia", $provincia, PDO::PARAM_STR);
+            $query->bindParam("pais", $pais, PDO::PARAM_STR);
+            $query->bindParam("empresa", $empresa, PDO::PARAM_STR);
+            $query->bindParam("cuit", $cuit, PDO::PARAM_STR);
+            $query->bindParam("cp", $cp, PDO::PARAM_STR);
+            $query->bindParam("checkboxFacturarAca", $isFactDir, PDO::PARAM_STR);
+            $query->bindParam("hostname",$host, PDO::PARAM_STR);
+            
+            
+            if ($query->execute()) 
+            {
+                return true;
+            }else{
+                return false;
+            }
+        } //end else
+        
+        
     }
 
     public function delPedido($email)
@@ -236,7 +351,7 @@ class Crud{
 
     public function checkLoginCliente($email,$pass)
     {
-        $query = $this->db->query("SELECT * FROM logincliente WHERE email = '$email' AND password = '$pass'");
+        $query = $this->db->query("SELECT * FROM logincliente WHERE email = '$email' AND contrasenia = '$pass'");
         $query->execute();
         if ($query->rowCount() > 0) 
         {

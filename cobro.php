@@ -126,5 +126,10 @@
         <script src="administracion/lib/angular.min.js"></script>
         <!-- Core App -->
         <script src="js/appShop.js"></script>
+        <script type="text/javascript">
+            setTimeout(function(){
+                localStorage.clear();
+            },1000);
+        </script>
     </body>
 </html>

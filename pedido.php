@@ -84,6 +84,7 @@ session_start();
                                         <span><img class="imgInfoCarrito" src="administracion/{{producto.imagen}}"></span>
                                         <span class="text-muted">{{producto.nombre}} </span>
                                         <span> ${{producto.precio}}<small>ARS</small></span>
+                                        <span class="text-muted">(x{{producto.cantidad}})</span>
                                         </li>
                                 </ul>
                             </div><!-- / div:infoCarrito text-left-->
@@ -96,15 +97,16 @@ session_start();
                         <div class="col-md-12 alert">
                              <strong class="text-muted">    
                                     {{ getCantItemsCart() }} Articulo/s por un total de
-                            </strong> {{ getTotal() |currency:'$' }} ARS
+                            </strong> {{ getTotal() |currency:'$' }} <small>ARS</small>
                         </div><!-- /div:float-right-->
                         <div class="col-md-12" style="clear:both;">
                             
                             <div class="alert">
-                            <strong class="text-muted">Sub-total (impuestos inc.)</strong> {{ getTotal() |currency:'$'}} ARS</div>
+                            <strong class="text-muted">Sub-total (impuestos inc.)</strong> {{ getTotal() |currency:'$'}} <small>ARS</small></div>
                             <hr>
                             <div class="alert">
-                                <strong class="text-muted">Total con envio </strong> {{ (getTotal() + pedido.costoEnvio) |currency:'$'}} ARS
+                                <p> <strong class="text-muted">Costo envio:</strong> {{ pedido.costoEnvio |currency:'$'}}<small>ARS</small> </p>
+                                <strong class="text-muted">Total con envio </strong> {{ (getTotal() + pedido.costoEnvio) |currency:'$'}}<small>ARS</small> 
                             </div>
                         </div><!-- /div:col-md-12-->
 
