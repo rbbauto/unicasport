@@ -9,7 +9,7 @@
 
 		$result= $crud->checkLoginCliente($data['nombre'],$pass);
 
-		$result[0]['password']="";
+		$result[0]['contrasenia']="";
 		
 		echo json_encode($result[0]);
 

@@ -138,6 +138,8 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 	$scope.actualizarPedido=function(){
 		if (!$scope.pedido.contrasenia.length > 0) {
 			alert("Falta llenar el campo contraseña\nrevise la solapa Editar Informacion");
+			$("#datos").collapse('show');
+			$("#pass").focus();
 			return;
 		}
 		$.post( "core/controller/updateCart.controller.php", JSON.stringify($scope.pedido) , function( data ) {
@@ -177,7 +179,7 @@ app.controller('carrito', ['$scope','$http', function($scope,$http){
 		}
 
 		$scope.finalizarCompra=function(){
-			if ($scope.envio == "") {
+			if ($scope.envio == "" | Debug.objectSize(Debug.envio) == 0) {
 				alert("Por favor elija una forma de envio\n En el formulario de envio");
 				$("#envio").collapse('show');
 				return;

@@ -45,20 +45,26 @@ app.controller('productos', ['$scope','$http', function($scope,$http){
 		setTimeout(function(){
 			$(".infoCarrito").hide();
 		},10);
-		var checkDuplicate=Object.keys($scope.storage());
+		//var checkDuplicate=Object.keys($scope.storage());
 		$scope.carrito.item=$scope.productos[index];
 		$scope.carrito.item.subtotal=$scope.productos[index].precio;
 		$scope.carrito.item.cantidad=1;
-		$scope.carrito[index]= $scope.productos[index];
-		localStorage.setItem("Items",JSON.stringify($scope.carrito));
+		
+		if ($scope.checkDuplicate($scope.productos[index].id)) {
+			alert("el producto ya esta incluido en el\n  carrito de compras!");
+			setTimeout(function(){
+				$("#modal_carrito").modal('hide');
+			},100);
 
-		if((checkDuplicate.includes(index.toString()))){
-			alert("El Producto ya fue incluido en el carrito de compras");
-			setTimeout(function(){$("#modal_carrito").modal('hide');},100);
 		}else{
+			$scope.carrito.push($scope.productos[index]);
 			$scope.carrito.total = sumaFloat($scope.carrito.item.precio,JSON.parse(localStorage.getItem("Total")));
 			localStorage.setItem("Total",JSON.stringify($scope.carrito.total));
+			localStorage.setItem("Items",JSON.stringify($scope.carrito));	
 		}
+		
+
+		
 
 		$scope.carrito.items = $scope.storage().length;
 		
@@ -71,6 +77,20 @@ app.controller('productos', ['$scope','$http', function($scope,$http){
 		$scope.carrito.items = $scope.storage().length;
 		$scope.carrito.total= $scope.getTotal();
 	};
+
+	$scope.checkDuplicate=function (id){
+		for(i=0;i< Debug.carrito.length;i++)
+		{
+			if(Debug.carrito[i].id == id)
+			{
+		      return true;
+		    }
+		    else
+		    {
+		      return false;
+		    }
+		}
+	}
 	
 	setTimeout(function(){
 		$(".se-pre-con").hide();

@@ -98,7 +98,7 @@
 
             <div class="container">
                 <div class="row">
-                    <div ng-repeat="producto in productos |filter:buscarProductos" class="col-sm-3" id="{{$index}}">
+                    <div ng-repeat="producto in productos | filter:buscarProductos" class="col-sm-3" id="{{$index}}">
 
                         <div class="card">
                             <img class="card-img-top img-fluid" src="administracion/{{producto.imagen}}"
