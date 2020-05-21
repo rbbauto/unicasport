@@ -45,11 +45,34 @@
                     <input id="buscar" type="text" ng-model="buscarProductos" class="form-control" placeholder="Ingrese criterio de busqueda">
                 </div>
                 <div class="float-right">
-                    <button ng-click="errors= []" class="btn btn-success" data-toggle="modal" data-target="#add_new_modal"> <i class="fas fa-plus-circle"></i> Nuevo Producto
-                    </button>
-                    <button ng-click="errors= []" class="btn btn-primary" data-toggle="modal" data-target="#add_new_cat"> <i class="fas fa-plus-circle"></i> Nueva Categoria
-                    </button>
-                    <a class="btn btn-danger" href="logout.php"><i class="fas fa-sign-out-alt"></i> Cerrar Session</a>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Menu accciones
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a  href="" 
+                                ng-click="errors= []" 
+                                class="dropdown-item" 
+                                data-toggle="modal" 
+                                data-target="  #add_new_modal"> 
+                                    <i class="fas fa-plus-circle"></i>
+                                        Nuevo Producto
+                            </a>
+                            <hr>
+                             <a href="" 
+                                ng-click="errors= []" 
+                                class="dropdown-item" 
+                                data-toggle="modal" 
+                                data-target="#add_new_cat"> 
+                                <i class="fas fa-plus-circle"></i> 
+                                    Nueva Categoria
+                            </a>
+                            <hr>
+                             <a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Cerrar Session</a>
+                        </div>
+                    </div>
+
+                    
                 </div>
             </div>
         </div>
