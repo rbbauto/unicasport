@@ -99,7 +99,7 @@ session_start();
                                     {{ getCantItemsCart() }} Articulo/s por un total de
                             </strong> {{ getTotal() |currency:'$' }} <small>ARS</small>
                         </div><!-- /div:float-right-->
-                        <div ng-if="carrito.length > 0" class="col-md-12" style="clear:both;">
+                        <div ng-if="(carrito.length > 0) && (objectSize(pedido) >0)" class="col-md-12" style="clear:both;">
                             
                             <div class="alert">
                             <strong class="text-muted">Sub-total (impuestos inc.)</strong> {{ getTotal() |currency:'$'}} <small>ARS</small></div>
